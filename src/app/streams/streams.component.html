@@ -1,0 +1,10 @@
+<h2>Streams:</h2>
+<div class="display-stream">	
+	<div *ngFor="let stream of streams" class="box">
+		<a routerLink=#>
+			<h3>Стример:{{stream.channel.display_name}}</h3>
+			<h3>Зрителей:{{stream.viewers}}</h3>
+			<img src="{{stream.preview.medium}}">
+		</a>
+	</div>
+</div>

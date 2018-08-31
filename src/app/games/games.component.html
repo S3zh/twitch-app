@@ -1,0 +1,10 @@
+<h2>Games:</h2>
+<div class="display-games">
+	<div *ngFor="let game of games" class="box">
+		<a routerLink="/games/{{game.game.name}}">
+			<h3>{{game.game.name}}</h3>
+			<h4>Зрителей: {{game.viewers}}</h4>
+			<img src="{{game.game.box.large}}">
+		</a>
+	</div>
+</div>

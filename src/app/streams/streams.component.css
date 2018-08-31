@@ -1,0 +1,29 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: blue;
+}
+
+.display-stream {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.box {
+	width: 30%;
+	margin: 5px;
+	padding: 10px;
+	text-align: center;
+}

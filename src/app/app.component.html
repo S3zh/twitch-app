@@ -2,8 +2,11 @@
   <h1>
     Welcome to {{ title }}!
   </h1> 
-  <stream-view></stream-view>
-</div>
+  <nav>
+  	<a routerLink="/games">Games</a>
+  </nav>
 
-<img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" class="twitch-connect" href="#" />
+<!--   <stream-view></stream-view> -->
+</div>
+<router-outlet></router-outlet>
 

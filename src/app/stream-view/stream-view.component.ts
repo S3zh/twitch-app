@@ -20,10 +20,21 @@ export class StreamViewComponent implements OnInit {
 		this.streamService.getStream().subscribe(
 			(answer: object) => {
 				console.log(answer);
+				if (answer['stream'] === null){
+					console.log('null');
+					return;
+				}
 				this.stream = answer;
 			});
 
 	}
 
+/*	Auth(){
+		this.streamService.getAuth().subscribe(
+			(answer: object) => {
+				console.log(answer);
+			})
+	}
+*/
 
 }

@@ -1,7 +1,10 @@
-<div *ngIf="stream">
+<div *ngIf="stream; else elseBlock">
 	<h2>This is {{ stream.stream.channel.display_name}} stream!</h2>
 	<h2>Now playing in {{stream.stream.game}}</h2>
 	<p>Viewers: {{stream.stream.viewers}}</p>
+</div>
+<div>
+	<ng-template #elseBlock>Stream offline</ng-template>
 </div>
 <div style="display: inline-flex">
 <iframe
@@ -20,3 +23,6 @@
         width="350">
 </iframe>
 </div>
+<!-- 
+<img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" 
+	class="twitch-connect" href="#" (click)=Auth() /> -->
