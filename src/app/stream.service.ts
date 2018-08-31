@@ -6,15 +6,16 @@ import {HttpClient} from '@angular/common/http';
 })
 
 export class StreamService {
-	private streamUrl = 'https://api.twitch.tv/kraken/streams/silvername?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk';
+	
 	private gameUrl = 'https://api.twitch.tv/kraken/games/top?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=12';
 
 	/*private authURL = 'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&redirect_uri=http://localhost&scope=viewing_activity_read&state=c3ab8aa609ea11e793ae92361f002671'*/
 
 	constructor(private http: HttpClient){}
 
-	getStream() {
-		return this.http.get(this.streamUrl);
+	getStream(name: string) {
+		const url = `https://api.twitch.tv/kraken/streams/${name}?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk`;
+		return this.http.get(url);
 	};	
 
 	getGames() {

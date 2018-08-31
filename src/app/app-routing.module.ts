@@ -7,7 +7,8 @@ import {StreamViewComponent} from './stream-view/stream-view.component';
 const routes: Routes = [
 	{path: 'games', component: GamesComponent},
 /*	{path: '', redirectTo: '/games', pathMatch: 'full'}*/
-	{path: 'games/:game', component: StreamsComponent}
+	{path: 'games/:game', component: StreamsComponent},
+	{path: 'stream/:name', component: StreamViewComponent},
 ]
 
 @NgModule ({

@@ -1,27 +1,27 @@
 <div *ngIf="stream; else elseBlock">
-	<h2>This is {{ stream.stream.channel.display_name}} stream!</h2>
-	<h2>Now playing in {{stream.stream.game}}</h2>
-	<p>Viewers: {{stream.stream.viewers}}</p>
+	<h2>This is {{ stream.channel.display_name}} stream!</h2>
+	<h2>Now playing in {{stream.game}}</h2>
+	<p>Viewers: {{stream.viewers}}</p>
+	<div style="display: inline-flex">
+		<iframe
+		    [src]="streamUrl | safe"
+			height="500"
+		    width="600"
+		    frameborder="0"
+		    scrolling="no"
+		    allowfullscreen="true">
+		</iframe>
+		<iframe frameborder="0"
+		        scrolling="no"
+		        id="chat_embed"
+		        [src]="chatUrl |safe"
+		        height="500"
+		        width="350">
+		</iframe>
+	</div>
 </div>
 <div>
 	<ng-template #elseBlock>Stream offline</ng-template>
-</div>
-<div style="display: inline-flex">
-<iframe
-    src="https://player.twitch.tv/?channel=silvername&autoplay=false"
-	height="400"
-    width="600"
-    frameborder="0"
-    scrolling="no"
-    allowfullscreen="true">
-</iframe>
-<iframe frameborder="0"
-        scrolling="no"
-        id="chat_embed"
-        src="https://www.twitch.tv/embed/silvername/chat"
-        height="500"
-        width="350">
-</iframe>
 </div>
 <!-- 
 <img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" 

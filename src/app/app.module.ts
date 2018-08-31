@@ -8,6 +8,7 @@ import {GamesComponent} from './games/games.component';
 import {StreamsComponent} from './streams/streams.component';
 import {AppRoutingModule} from './app-routing.module';
 import {provideRoutes} from '@angular/router';
+import {SafePipe} from './safe.pipe';
 
 
 
@@ -16,7 +17,8 @@ import {provideRoutes} from '@angular/router';
     AppComponent,
     StreamViewComponent,
     GamesComponent,
-    StreamsComponent
+    StreamsComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
