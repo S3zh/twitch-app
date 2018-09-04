@@ -5,8 +5,16 @@
   <nav>
   	<a routerLink="/games">Games</a>
   </nav>
-
-<!--   <stream-view></stream-view> -->
+<!-- <div>
+	<label>
+		Поиск: 
+		<input id="search">
+		<button (click)>Поиск</button>
+	</label>
+</div> -->
+<a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&redirect_uri=http://127.0.0.1:4200&scope=viewing_activity_read">	
+	<img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" class="twitch-connect"/>
+</a>
 </div>
 <router-outlet></router-outlet>
 

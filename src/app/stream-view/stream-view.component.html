@@ -1,12 +1,13 @@
 <div *ngIf="stream; else elseBlock">
-	<h2>This is {{ stream.channel.display_name}} stream!</h2>
-	<h2>Now playing in {{stream.game}}</h2>
-	<p>Viewers: {{stream.viewers}}</p>
-	<div style="display: inline-flex">
+	<div>
+		<span>This is {{ stream.channel.display_name}} stream!</span>
+		<span>Now playing in {{stream.game}}</span>
+	</div>
+	<div class="player">
 		<iframe
 		    [src]="streamUrl | safe"
-			height="500"
-		    width="600"
+		  	height="600"
+		    width="80%"
 		    frameborder="0"
 		    scrolling="no"
 		    allowfullscreen="true">
@@ -15,14 +16,17 @@
 		        scrolling="no"
 		        id="chat_embed"
 		        [src]="chatUrl |safe"
-		        height="500"
-		        width="350">
+		        height="600"
+		        width="20%">
 		</iframe>
+	</div>
+	<div>
+		<span>{{stream.channel.status}} </span>
+		<span>Viewers: {{stream.viewers}}</span>
 	</div>
 </div>
 <div>
 	<ng-template #elseBlock>Stream offline</ng-template>
 </div>
-<!-- 
-<img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" 
-	class="twitch-connect" href="#" (click)=Auth() /> -->
+
+

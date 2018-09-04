@@ -5,14 +5,14 @@ import {StreamsComponent} from './streams/streams.component';
 import {StreamViewComponent} from './stream-view/stream-view.component';
 
 const routes: Routes = [
-	{path: 'games', component: GamesComponent},
-/*	{path: '', redirectTo: '/games', pathMatch: 'full'}*/
-	{path: 'games/:game', component: StreamsComponent},
-	{path: 'stream/:name', component: StreamViewComponent},
-]
+  {path: 'games', component: GamesComponent},
+  {path: '', redirectTo: '/games', pathMatch: 'full'},
+  {path: 'games/:game', component: StreamsComponent},
+  {path: 'stream/:name', component: StreamViewComponent},
+];
 
 @NgModule ({
-	exports: [RouterModule],
-	imports: [RouterModule.forRoot(routes)]
+  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)]
 })
 export class AppRoutingModule {}

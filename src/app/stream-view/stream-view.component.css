@@ -1,0 +1,8 @@
+.player {
+	display: flex;
+}
+
+span {
+	font-size: 20px;
+	margin: 0 20px;
+}
