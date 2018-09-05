@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import {HttpClient} from '@angular/common/http';
 
 export class StreamService {
 
-  private gameUrl = 'https://api.twitch.tv/kraken/games/top?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=12';
+  private gameUrl = 'https://api.twitch.tv/kraken/games/top?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=41';
 
 
   constructor(private http: HttpClient) {}
@@ -22,9 +22,23 @@ export class StreamService {
   }
 
   getStreams(game: string) {
-    const url = `https://api.twitch.tv/kraken/streams/?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=24&game=${game}`;
-    console.log(url);
+    const url = `https://api.twitch.tv/kraken/streams/?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=44&game=${game}`;
     return this.http.get(url);
+  }
+
+  checkOaut() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept':  'application/vnd.twitchtv.v5+json',
+        'Client-ID': '4osqgh9a16thvsc8qw4dttcf6mrodk',
+        'Authorization': 'OAuth cfabdegwdoklmawdzdo98xt2fo512y'
+      })
+    };
+
+    const options = {headers: httpOptions};
+
+    const url = 'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&redirect_uri=http://127.0.0.1:4200&scope=viewing_activity_read';
+    return this.http.get('https://api.twitch.tv/kraken', httpOptions);
   }
 
 /*	private log(message: string) {

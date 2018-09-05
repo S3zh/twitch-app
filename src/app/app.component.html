@@ -1,20 +1,12 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1> 
-  <nav>
-  	<a routerLink="/games">Games</a>
-  </nav>
-<!-- <div>
-	<label>
-		Поиск: 
-		<input id="search">
-		<button (click)>Поиск</button>
-	</label>
-</div> -->
-<a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&redirect_uri=http://127.0.0.1:4200&scope=viewing_activity_read">	
-	<img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" class="twitch-connect"/>
-</a>
-</div>
+<mat-toolbar color="primary">
+  <a href="#"><span>Twitch App</span></a>
+  <button mat-button routerLink="/games" color="" >Games</button>
+  <span class="example-fill-remaining-space"></span>
+  <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&redirect_uri=http://127.0.0.1:4200&scope=viewing_activity_read">
+    <img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" class="twitch-connect"/>
+  </a>
+</mat-toolbar>
 <router-outlet></router-outlet>
-
+<mat-toolbar color="primary" class="footer">
+  <span>Created by S3zh</span>
+</mat-toolbar>

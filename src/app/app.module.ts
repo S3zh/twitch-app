@@ -9,6 +9,8 @@ import {StreamsComponent} from './streams/streams.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SafePipe} from './safe.pipe';
 import {SearchStreamComponent} from './search-stream/search-stream.component';
+import {MatButtonModule, MatToolbarModule, MatCardModule} from '@angular/material';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -25,7 +27,11 @@ import {SearchStreamComponent} from './search-stream/search-stream.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

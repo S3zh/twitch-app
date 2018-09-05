@@ -1,9 +1,9 @@
 * {
-	margin: 0;
-	padding: 0;
+/*	margin: 0;
+	padding: 0;*/
 }
 
-h2 {
+h1 {
 	text-align: center;
 }
 
@@ -19,11 +19,32 @@ a:hover {
 .display-stream {
 	display: flex;
 	flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.box {
-	width: 30%;
-	margin: 5px;
-	padding: 10px;
-	text-align: center;
+mat-card {
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+  width: 22%;
+}
+
+mat-card-header {
+  justify-content: center;
+}
+
+.mat-card-header-text {
+  text-align: center;
+}
+
+mat-card img {
+  width: 100%;
+}
+
+mat-card-title {
+  font-size: 16px !important;
+}
+
+.page-title{
+  margin: 10px 0;
 }
