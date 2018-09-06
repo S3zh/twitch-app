@@ -9,7 +9,7 @@ import {StreamsComponent} from './streams/streams.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SafePipe} from './safe.pipe';
 import {SearchStreamComponent} from './search-stream/search-stream.component';
-import {MatButtonModule, MatToolbarModule, MatCardModule} from '@angular/material';
+import {MatButtonModule, MatToolbarModule, MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 
 
@@ -32,6 +32,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatMenuModule,
     MatToolbarModule,
     MatCardModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

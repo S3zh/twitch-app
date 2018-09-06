@@ -21,6 +21,9 @@ export class GamesComponent implements OnInit {
     this.streamService.getGames().subscribe(
       (answer: object) => {
         console.log('Games:', answer);
+        if (answer['error']) {
+          alert('Ошибка, перезагрузите страницу');
+        }
         this.games = answer['top'];
         console.log(this.games);
       })

@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {catchError, map, tap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +19,12 @@ export class StreamService {
     return this.http.get(url);
   }
 
-  getGames() {
-    return this.http.get(this.gameUrl);
+  getGames(): Observable<Object> {
+    return this.http.get<Object>(this.gameUrl).pipe(
+      tap(_ => console.log('Ok')),
+      catchError((e) => {console.log('Error');
+      return of({error: true} as Object)})
+    );
   }
 
   getStreams(game: string) {
@@ -34,10 +40,6 @@ export class StreamService {
         'Authorization': 'OAuth cfabdegwdoklmawdzdo98xt2fo512y'
       })
     };
-
-    const options = {headers: httpOptions};
-
-    const url = 'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&redirect_uri=http://127.0.0.1:4200&scope=viewing_activity_read';
     return this.http.get('https://api.twitch.tv/kraken', httpOptions);
   }
 
