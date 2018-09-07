@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StreamService} from '../stream.service';
+import {Game} from '../game';
 
 @Component ({
   selector: 'games',
@@ -9,7 +10,8 @@ import {StreamService} from '../stream.service';
 
 export class GamesComponent implements OnInit {
 
-  games: Array<object>;
+  games: Array<Game>;
+
 
   constructor (private streamService: StreamService) {}
 
@@ -20,13 +22,8 @@ export class GamesComponent implements OnInit {
   getGames () {
     this.streamService.getGames().subscribe(
       (answer: object) => {
-        console.log('Games:', answer);
-        if (answer['error']) {
-          alert('Ошибка, перезагрузите страницу');
-        }
         this.games = answer['top'];
-        console.log(this.games);
-      })
+      });
   }
 
 }

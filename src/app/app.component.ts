@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Stream} from './stream';
 import {StreamService} from './stream.service';
 
 @Component({
@@ -8,11 +7,9 @@ import {StreamService} from './stream.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'twitch-app';
 
-  stream: object;
+
   user: object;
-
 
   constructor(private streamService: StreamService) {}
 
@@ -23,9 +20,7 @@ export class AppComponent implements OnInit {
   checkUser() {
     this.streamService.checkOaut().subscribe(
       (answer: object) => {
-        console.log(answer);
-        this.user = answer["streams"];
-        console.log(this.user);
+        this.user = answer;
       });
   }
 

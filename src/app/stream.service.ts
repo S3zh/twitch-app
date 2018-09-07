@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
+import {Game} from './game';
+import {Stream} from './stream';
 
 @Injectable({
   providedIn: 'root'
@@ -9,27 +11,37 @@ import {Observable, of} from 'rxjs';
 
 export class StreamService {
 
-  private gameUrl = 'https://api.twitch.tv/kraken/games/top?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=41';
-
 
   constructor(private http: HttpClient) {}
 
-  getStream(name: string) {
+  getStream(name: string): Observable<Stream> {
     const url = `https://api.twitch.tv/kraken/streams/${name}?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk`;
-    return this.http.get(url);
-  }
-
-  getGames(): Observable<Object> {
-    return this.http.get<Object>(this.gameUrl).pipe(
+    return this.http.get<Stream>(url).pipe(
       tap(_ => console.log('Ok')),
-      catchError((e) => {console.log('Error');
-      return of({error: true} as Object)})
+      catchError(_ => {return of({average_fps: 0,
+        channel: {}, created_at: '', delay: 0,
+        game: '', is_playlist: false, preview: {},
+        stream_type: '', video_height: 0, viewers: 0} as Stream)})
     );
   }
 
-  getStreams(game: string) {
+  getGames(): Observable<Array<Game>> {
+    const url = 'https://api.twitch.tv/kraken/games/top?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=41';
+    return this.http.get<Array<Game>>(url).pipe(
+      tap(_ => console.log('Ok')),
+      catchError((e) =>  of([{viewers: 0, channels: 0, game: {}}] as Array<Game>))
+    );
+  }
+
+  getStreams(game: string): Observable<Array<Stream>> {
     const url = `https://api.twitch.tv/kraken/streams/?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=44&game=${game}`;
-    return this.http.get(url);
+    return this.http.get<Array<Stream>>(url).pipe(
+      tap(_ => console.log('Ok')),
+      catchError(_ => {return of([{average_fps: 0,
+      channel: {}, created_at: '', delay: 0,
+      game: '', is_playlist: false, preview: {},
+      stream_type: '', video_height: 0, viewers: 0}] as Array<Stream>)})
+    );
   }
 
   checkOaut() {
@@ -37,11 +49,12 @@ export class StreamService {
       headers: new HttpHeaders({
         'Accept':  'application/vnd.twitchtv.v5+json',
         'Client-ID': '4osqgh9a16thvsc8qw4dttcf6mrodk',
-        'Authorization': 'OAuth cfabdegwdoklmawdzdo98xt2fo512y'
+        'Authorization': 'OAuth mpuzqk755l94o03w1gcsou6o16m1ol'
       })
     };
     return this.http.get('https://api.twitch.tv/kraken', httpOptions);
   }
+
 
 /*	private log(message: string) {
 		alert('Ошибка: '+ message);

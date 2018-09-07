@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {StreamService} from '../stream.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
+import {Stream} from '../stream';
 
 
 
@@ -13,7 +14,7 @@ import {Location} from '@angular/common';
 
 export class StreamsComponent implements OnInit {
 
-  private streams: Array<object>;
+  private streams: Array<Stream>;
 
   constructor(private streamService: StreamService,
               private route: ActivatedRoute,
@@ -27,9 +28,8 @@ export class StreamsComponent implements OnInit {
     const game = this.route.snapshot.paramMap.get('game');
     this.streamService.getStreams(game).subscribe(
       (answer: object) => {
-        this.streams = answer["streams"];
-        console.log(this.streams);
-      })
+        this.streams = answer['streams'];
+      });
   }
 
 }
