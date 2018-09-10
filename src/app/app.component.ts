@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {StreamService} from './stream.service';
+import {User} from './user';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import {StreamService} from './stream.service';
 export class AppComponent implements OnInit {
 
 
-  user: object;
+  user: User;
 
   constructor(private streamService: StreamService) {}
 
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   checkUser() {
     this.streamService.checkOaut().subscribe(
       (answer: object) => {
-        this.user = answer;
+        this.user = answer['token'];
       });
   }
 

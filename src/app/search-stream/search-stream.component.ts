@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {StreamService} from '../stream.service';
 
 @Component ({
-  selector: 'search-stream',
+  selector: 'app-search-stream',
   templateUrl: './search-stream.component.html',
   styleUrls: ['./search-stream.component.css']
 })
