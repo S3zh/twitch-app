@@ -6,7 +6,7 @@ import {Game} from './game';
 import {Stream} from './stream';
 import {User} from './user';
 import {GameResponse} from './game-response';
-import {UserResponce} from './user-responce';
+import {UserResponse} from './user-response';
 import {StreamsResponse} from './streams-response';
 import {StreamResponse} from './stream-response';
 
@@ -57,7 +57,7 @@ export class StreamService {
         'Authorization': 'OAuth mpuzqk755l94o03w1gcsou6o16m1ol'
       })
     };
-    return this.http.get<UserResponce>('https://api.twitch.tv/kraken', httpOptions)
+    return this.http.get<UserResponse>('https://api.twitch.tv/kraken', httpOptions)
       .pipe(map(result => result.token),
             catchError(() =>
               of ({autorization: {}, client_id: '', expires_in: 0,
