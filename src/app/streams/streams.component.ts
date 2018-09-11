@@ -6,8 +6,6 @@ import {Stream} from '../stream';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 
-
-
 @Component({
   selector: 'app-streams',
   templateUrl: './streams.component.html',
@@ -17,7 +15,7 @@ import {Subject} from 'rxjs';
 export class StreamsComponent implements OnInit, OnDestroy {
 
   private streams: Array<Stream>;
-  private subject = new Subject();
+  private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
               private route: ActivatedRoute,
@@ -27,16 +25,18 @@ export class StreamsComponent implements OnInit, OnDestroy {
     this.getStreams();
   }
 
-  ngOnDestroy(){
-    this.subject.next(true);
-    this.subject.complete();
+  ngOnDestroy() {
+    this.ngUnsubscribe$.next(true);
+    this.ngUnsubscribe$.complete();
   }
 
   getStreams() {
     const game = this.route.snapshot.paramMap.get('game');
-    this.streamService.getStreams(game).pipe(takeUntil(this.subject)).subscribe(
-      (answer: any) => {
-        this.streams = answer.streams;
+    this.streamService.getStreams(game).pipe(
+        takeUntil(this.ngUnsubscribe$)
+      ).subscribe(
+      (answer) => {
+        this.streams = answer;
       });
   }
 

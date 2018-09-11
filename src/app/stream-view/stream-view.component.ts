@@ -16,7 +16,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   streamUrl: string;
   chatUrl: string;
   stream: Stream;
-  private subject = new Subject();
+  private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
         private route: ActivatedRoute,
@@ -27,15 +27,17 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subject.next(true);
-    this.subject.complete();
+    this.ngUnsubscribe$.next(true);
+    this.ngUnsubscribe$.complete();
   }
 
   getStream() {
     const name = this.route.snapshot.paramMap.get('name');
-    this.streamService.getStream(name).pipe(takeUntil(this.subject)).subscribe(
-      (answer: any) => {
-        this.stream = answer.stream;
+    this.streamService.getStream(name).pipe(
+        takeUntil(this.ngUnsubscribe$)
+      ).subscribe(
+      (answer) => {
+        this.stream = answer;
         this.streamUrl = `https://player.twitch.tv/?channel=${this.stream.channel['name']}&autoplay=false`;
         this.chatUrl = `https://www.twitch.tv/embed/${this.stream.channel['name']}/chat`;
       });

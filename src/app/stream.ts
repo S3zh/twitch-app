@@ -6,7 +6,7 @@ export class Stream {
     broadcaster_language: string;
     created_at: string;
     delay: number;
-    displat_name: string;
+    display_name: string;
     followers: number;
     game: string;
     language: string;

@@ -11,10 +11,8 @@ import {Subject} from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-
   user: User;
-  private subject = new Subject();
-
+  private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService) {}
 
@@ -22,13 +20,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.checkUser();
   }
 
-  ngOnDestroy(){
-    this.subject.next(true);
-    this.subject.complete();
+  ngOnDestroy() {
+    this.ngUnsubscribe$.next(true);
+    this.ngUnsubscribe$.complete();
   }
 
   checkUser() {
-    this.streamService.checkOaut().pipe(takeUntil(this.subject)).subscribe(
+    this.streamService.checkOaut().pipe(
+        takeUntil(this.ngUnsubscribe$)
+      ).subscribe(
       (answer: any) => {
         this.user = answer.token;
       });

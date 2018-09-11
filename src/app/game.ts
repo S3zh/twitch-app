@@ -1,4 +1,4 @@
-export class Game {
+export interface Game {
   channels: number;
   game: {
     box: {
@@ -7,7 +7,7 @@ export class Game {
       small: string;
       template: string;
     };
-    giantbomd_id: number;
+    giantbomb_id: number;
     locale: string;
     localized_name: string;
     logo: {

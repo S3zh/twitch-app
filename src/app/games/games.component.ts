@@ -4,7 +4,6 @@ import {Game} from '../game';
 import { takeUntil } from 'rxjs/operators';
 import {Subject} from 'rxjs';
 
-
 @Component ({
   selector: 'app-games',
   templateUrl: './games.component.html',
@@ -14,8 +13,7 @@ import {Subject} from 'rxjs';
 export class GamesComponent implements OnInit, OnDestroy {
 
   games: Array<Game>;
-  private subject = new Subject();
-
+  private ngUnsubscribe$ = new Subject();
 
   constructor (private streamService: StreamService) {}
 
@@ -24,14 +22,16 @@ export class GamesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subject.next();
-    this.subject.complete();
+    this.ngUnsubscribe$.next();
+    this.ngUnsubscribe$.complete();
   }
 
   getGames () {
-    this.streamService.getGames().pipe(takeUntil(this.subject)).subscribe(
-      (answer: any) => {
-        this.games = answer.top;
+    this.streamService.getGames().pipe(
+        takeUntil(this.ngUnsubscribe$)
+      ).subscribe(
+      (answer) => {
+        this.games = answer;
       });
   }
 
