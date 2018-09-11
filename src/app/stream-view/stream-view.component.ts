@@ -36,7 +36,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
     this.streamService.getStream(name).pipe(
         takeUntil(this.ngUnsubscribe$)
       ).subscribe(
-      (answer) => {
+      (answer: Stream) => {
         this.stream = answer;
         this.streamUrl = `https://player.twitch.tv/?channel=${this.stream.channel['name']}&autoplay=false`;
         this.chatUrl = `https://www.twitch.tv/embed/${this.stream.channel['name']}/chat`;

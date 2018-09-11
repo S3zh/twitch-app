@@ -35,7 +35,7 @@ export class StreamsComponent implements OnInit, OnDestroy {
     this.streamService.getStreams(game).pipe(
         takeUntil(this.ngUnsubscribe$)
       ).subscribe(
-      (answer) => {
+      (answer: Array<Stream>) => {
         this.streams = answer;
       });
   }

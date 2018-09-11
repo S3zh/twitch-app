@@ -4,6 +4,7 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {Game} from './game';
 import {Stream} from './stream';
+import {User} from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,7 @@ export class StreamService {
     );
   }
 
-  checkOaut() {
+  checkOaut(): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Accept':  'application/vnd.twitchtv.v5+json',
@@ -51,7 +52,11 @@ export class StreamService {
         'Authorization': 'OAuth mpuzqk755l94o03w1gcsou6o16m1ol'
       })
     };
-    return this.http.get('https://api.twitch.tv/kraken', httpOptions);
+    return this.http.get('https://api.twitch.tv/kraken', httpOptions).pipe(
+      map(result => result['token']),
+      catchError((e) => of ({autorization: {}, client_id: '',
+        expires_in: 0, user_id: '', user_name: '', valid: false} as User))
+    );
   }
 
 }
