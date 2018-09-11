@@ -26,10 +26,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   checkUser() {
-    this.streamService.checkOaut().pipe(
-        takeUntil(this.ngUnsubscribe$)
-      ).subscribe(
-      (answer: User) => {
+    this.streamService.checkOaut()
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((answer: User) => {
         this.user = answer;
       });
   }

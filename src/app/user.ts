@@ -1,4 +1,4 @@
-export class User {
+export interface User {
   autorization: {
     created_at: string;
     scopes: Array<string>;

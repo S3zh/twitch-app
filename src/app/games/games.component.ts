@@ -27,10 +27,9 @@ export class GamesComponent implements OnInit, OnDestroy {
   }
 
   getGames () {
-    this.streamService.getGames().pipe(
-        takeUntil(this.ngUnsubscribe$)
-      ).subscribe(
-      (answer: Array<Game>) => {
+    this.streamService.getGames()
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((answer: Array<Game>) => {
         this.games = answer;
       });
   }

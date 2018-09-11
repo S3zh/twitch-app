@@ -32,10 +32,9 @@ export class StreamsComponent implements OnInit, OnDestroy {
 
   getStreams() {
     const game = this.route.snapshot.paramMap.get('game');
-    this.streamService.getStreams(game).pipe(
-        takeUntil(this.ngUnsubscribe$)
-      ).subscribe(
-      (answer: Array<Stream>) => {
+    this.streamService.getStreams(game)
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((answer: Array<Stream>) => {
         this.streams = answer;
       });
   }

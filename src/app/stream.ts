@@ -1,4 +1,4 @@
-export class Stream {
+export interface Stream {
   average_fps: number;
   channel: {
     background: string;
