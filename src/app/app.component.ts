@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   stream: object;
   user: object;
-
+  inputValue: string;
 
   constructor(private streamService: StreamService) {}
 
@@ -28,5 +28,4 @@ export class AppComponent implements OnInit {
         console.log(this.user);
       });
   }
-
 }

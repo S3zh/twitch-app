@@ -40,7 +40,15 @@ export class StreamService {
     return this.http.get('https://api.twitch.tv/kraken', httpOptions);
   }
 
+  searchStreams(query: string) {
+    const url = `https://api.twitch.tv/kraken/search/streams?query=${query}&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=12`;
+    return this.http.get(url);
+  }
 
+  searchGames(query: string) {
+    const url = `https://api.twitch.tv/kraken/search/games?query=${query}&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&live=true`;
+    return this.http.get(url);
+  }
 
 /*	private log(message: string) {
 		alert('Ошибка: '+ message);

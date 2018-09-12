@@ -11,7 +11,7 @@ import {SafePipe} from './safe.pipe';
 import {SearchStreamComponent} from './search-stream/search-stream.component';
 import {MatButtonModule, MatToolbarModule, MatCardModule, MatInputModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -33,6 +33,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatToolbarModule,
     MatCardModule,
     MatInputModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,1 +1,28 @@
-<h2>Hello!</h2>
+<div class="page-title">
+  <h1>Games:</h1>
+</div>
+<div class="display-games">
+  <mat-card *ngFor="let game of games">
+    <a routerLink="/games/{{game.game.name}}">
+      <mat-card-header>
+        <mat-card-title>{{game.game.name}}</mat-card-title>
+        <mat-card-subtitle>Зрителей: {{game.viewers}}</mat-card-subtitle>
+      </mat-card-header>
+      <img src="{{game.game.box.large}}">
+    </a>
+  </mat-card>
+</div>
+<div class="page-title">
+  <h1>Streams:</h1>
+</div>
+<div class="display-stream">
+  <mat-card *ngFor="let stream of streams">
+    <a routerLink="/stream/{{stream.channel.name}}">
+      <mat-card-header>
+        <mat-card-title>{{stream.channel.display_name}}</mat-card-title>
+        <mat-card-subtitle>Зрителей:{{stream.viewers}}</mat-card-subtitle>
+      </mat-card-header>
+      <img src="{{stream.preview.large}}">
+    </a>
+  </mat-card>
+</div>
