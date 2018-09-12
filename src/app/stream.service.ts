@@ -37,9 +37,10 @@ export class StreamService {
 
     const options = {headers: httpOptions};
 
-    const url = 'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&redirect_uri=http://127.0.0.1:4200&scope=viewing_activity_read';
     return this.http.get('https://api.twitch.tv/kraken', httpOptions);
   }
+
+
 
 /*	private log(message: string) {
 		alert('Ошибка: '+ message);

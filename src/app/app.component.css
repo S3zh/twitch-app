@@ -23,3 +23,16 @@ mat-toolbar img {
   justify-content: center;
   font-size: 16px;
 }
+
+mat-form-field {
+  padding-top: 15px;
+  width: 30%;
+}
+
+.search-button {
+  margin: 0;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: .2375em 0;
+}
