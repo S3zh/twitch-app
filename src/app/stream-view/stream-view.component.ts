@@ -1,44 +1,45 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {StreamService} from '../stream.service';
 import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
+import {Stream} from '../stream';
+import { takeUntil } from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
-  selector: 'stream-view',
+  selector: 'app-stream-view',
   templateUrl: './stream-view.component.html',
   styleUrls: ['./stream-view.component.css']
 })
-export class StreamViewComponent implements OnInit {
+export class StreamViewComponent implements OnInit, OnDestroy {
 
-	name: string;
-	stream: object;
-	streamUrl: string;
-	chatUrl: string;
+  streamUrl: string;
+  chatUrl: string;
+  stream: Stream;
+  private ngUnsubscribe$ = new Subject();
 
-	constructor(private streamService: StreamService,
-				private route: ActivatedRoute,
-				private location: Location) {}
+  constructor(private streamService: StreamService,
+        private route: ActivatedRoute,
+        private location: Location) {}
 
-	ngOnInit () {
-		this.getStream();	
-	}
+  ngOnInit () {
+    this.getStream();
+  }
 
-	getStream() {
-		const name = this.route.snapshot.paramMap.get('name');
-		this.streamService.getStream(name).subscribe(
-			(answer: object) => {
-				console.log(answer);
-				if (answer['stream'] === null){
-					console.log('null');
-					return;
-				}
-				this.stream = answer["stream"];
-				this.name = answer["stream"].channel.name;
-				this.streamUrl="https://player.twitch.tv/?channel="+this.name+"&autoplay=false";
-				this.chatUrl = "https://www.twitch.tv/embed/"+this.name+"/chat";
-			});
+  ngOnDestroy() {
+    this.ngUnsubscribe$.next(true);
+    this.ngUnsubscribe$.complete();
+  }
 
-	}
+  getStream() {
+    const name = this.route.snapshot.paramMap.get('name');
+    this.streamService.getStream(name)
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((answer: Stream) => {
+        this.stream = answer;
+        this.streamUrl = `https://player.twitch.tv/?channel=${this.stream.channel['name']}&autoplay=false`;
+        this.chatUrl = `https://www.twitch.tv/embed/${this.stream.channel['name']}/chat`;
+      });
 
+  }
 }
