@@ -85,20 +85,14 @@ export class StreamService {
       );
   }
 
-  searchStreams(query: string) {
-    const url = `https://api.twitch.tv/kraken/search/streams?query=${query}&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=12`;
-    return this.http.get(url);
+  searchStreams(query: string): Observable<Array<Stream>> {
+    const url = `https://api.twitch.tv/kraken/search/streams?query=${query}&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=40`;
+    return this.http.get<StreamsResponse>(url)
+      .pipe(
+        map(result => result.streams),
+        catchError(() =>
+          of([] as Array<Stream>))
+      );
   }
-
-  searchGames(query: string) {
-    const url = `https://api.twitch.tv/kraken/search/games?query=${query}&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&live=true`;
-    return this.http.get(url);
-  }
-
-/*	private log(message: string) {
-		alert('Ошибка: '+ message);
-	}
-*/
-
 
 }

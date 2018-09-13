@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {StreamService} from '../stream.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {Stream} from '../stream';
 
 @Component ({
   selector: 'app-search-stream',
@@ -9,8 +12,11 @@ import {Location} from '@angular/common';
   styleUrls: ['./search-stream.component.css']
 })
 
-export class SearchStreamComponent implements OnInit {
+export class SearchStreamComponent implements OnInit, OnDestroy {
 
+  isNotEmpty = true;
+  streams: Array<Stream>;
+  private ngUnsubscribe$ = new Subject();
 
   constructor (private streamService: StreamService,
                private route: ActivatedRoute,
@@ -18,18 +24,20 @@ export class SearchStreamComponent implements OnInit {
 
   ngOnInit () {
     this.searchStreams();
-    this.searchGames();
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe$.next(true);
+    this.ngUnsubscribe$.complete();
   }
 
   searchStreams() {
     const query = this.route.snapshot.paramMap.get('query');
     this.streamService.searchStreams(query)
-      .subscribe(answer => console.log(answer));
-  }
-
-  searchGames() {
-    const query = this.route.snapshot.paramMap.get('query');
-    this.streamService.searchGames(query)
-      .subscribe(answer => console.log(answer));
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((answer: Array<Stream>) => {
+        if (answer.length === 0) { this.isNotEmpty = false; }
+        this.streams = answer;
+      });
   }
 }

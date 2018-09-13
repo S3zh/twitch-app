@@ -3,7 +3,7 @@
       margin: 0;*/
 }
 
-.display-games {
+.display-games, .display-stream {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -47,4 +47,8 @@ mat-card-title {
 
 .page-title{
   margin: 10px 0;
+}
+
+.display-error {
+  text-align: center;
 }
