@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy} from '@angular/core';
 import {StreamService} from './stream.service';
 import {User} from './user';
 import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 import {Router} from '@angular/router';
 
 @Component({
@@ -12,9 +12,10 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  user: User;
+  static checkSearchInit$ = new BehaviorSubject('');
   private ngUnsubscribe$ = new Subject();
   inputValue: string;
+  user: User;
 
   constructor(private streamService: StreamService,
               private router: Router) {}
@@ -38,6 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   searchInit() {
     this.router.navigate([`/search/${this.inputValue}`]);
+    AppComponent.checkSearchInit$.next(this.inputValue);
     this.inputValue = '';
   }
 

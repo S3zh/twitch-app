@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {Stream} from '../stream';
+import {AppComponent} from '../app.component';
 
 @Component ({
   selector: 'app-search-stream',
@@ -23,7 +24,10 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
                private location: Location) {}
 
   ngOnInit () {
-    this.searchStreams();
+    AppComponent.checkSearchInit$
+      .subscribe((query: string) => {
+        this.searchStreams(query);
+      });
   }
 
   ngOnDestroy() {
@@ -31,12 +35,15 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe$.complete();
   }
 
-  searchStreams() {
-    const query = this.route.snapshot.paramMap.get('query');
+  searchStreams(query: string) {
     this.streamService.searchStreams(query)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Stream>) => {
-        if (answer.length === 0) { this.isNotEmpty = false; }
+        if (answer.length === 0) {
+          this.isNotEmpty = false;
+        } else {
+          this.isNotEmpty = true;
+        }
         this.streams = answer;
       });
   }
