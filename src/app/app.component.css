@@ -7,15 +7,15 @@
   flex: 1 1 auto;
 }
 
-a {
+.header a {
   text-decoration: none;
   color: white;
 }
-mat-toolbar button {
+.header button {
   margin: 0 10px;
 }
 
-mat-toolbar img {
+.header img {
   width: 100%;
 }
 
@@ -24,7 +24,7 @@ mat-toolbar img {
   font-size: 16px;
 }
 
-mat-form-field {
+.search-field {
   padding-top: 15px;
   width: 30%;
 }

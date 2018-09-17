@@ -25,6 +25,7 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
 
   ngOnInit () {
     AppComponent.checkSearchInit$
+      .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((query: string) => {
         this.searchStreams(query);
       });
@@ -39,12 +40,12 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
     this.streamService.searchStreams(query)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Stream>) => {
-        if (answer.length === 0) {
-          this.isNotEmpty = false;
-        } else {
-          this.isNotEmpty = true;
-        }
+        this.isNotEmpty = !!answer.length;
         this.streams = answer;
       });
+  }
+
+  getUrl(subUrl: string) {
+    return `/stream/${subUrl}`;
   }
 }
