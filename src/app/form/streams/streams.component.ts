@@ -1,8 +1,8 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {StreamService} from '../stream.service';
+import {StreamService} from '../../stream.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
-import {Stream} from '../stream';
+import {Stream} from '../../stream';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 

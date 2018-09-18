@@ -16,8 +16,6 @@ import {StreamResponse} from './stream-response';
 
 export class StreamService {
 
-  searchQuery$ = new BehaviorSubject('search');
-
   constructor(private http: HttpClient) {}
 
   getStream(name: string): Observable<Stream> {
@@ -67,34 +65,7 @@ export class StreamService {
       );
   }
 
-  checkOaut(): Observable<User> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Accept':  'application/vnd.twitchtv.v5+json',
-        'Client-ID': '4osqgh9a16thvsc8qw4dttcf6mrodk',
-        'Authorization': 'OAuth mpuzqk755l94o03w1gcsou6o16m1ol'
-      })
-    };
-    return this.http.get<UserResponse>('https://api.twitch.tv/kraken', httpOptions)
-      .pipe(map(result => result.token),
-        catchError(() =>
-          of ({autorization: {},
-            client_id: '',
-            expires_in: 0,
-            user_id: '',
-            user_name: '',
-            valid: false} as User))
-      );
-  }
 
-  searchStreams(query: string): Observable<Array<Stream>> {
-    const url = `https://api.twitch.tv/kraken/search/streams?query=${query}&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=40`;
-    return this.http.get<StreamsResponse>(url)
-      .pipe(
-        map(result => result.streams),
-        catchError(() =>
-          of([] as Array<Stream>))
-      );
-  }
+
 
 }

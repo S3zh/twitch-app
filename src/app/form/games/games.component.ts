@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {StreamService} from '../stream.service';
-import {Game} from '../game';
+import {StreamService} from '../../stream.service';
+import {Game} from '../../game';
 import { takeUntil } from 'rxjs/operators';
 import {Subject} from 'rxjs';
 

@@ -13,41 +13,9 @@ import {FormControl} from '@angular/forms';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  inputValue: FormControl = new FormControl('');
-  user: User;
-  private ngUnsubscribe$ = new Subject();
+  constructor() {}
 
-  constructor(private streamService: StreamService,
-              private router: Router) {}
+  ngOnDestroy() {}
 
-  ngOnInit() {
-    this.checkUser();
-    this.inputValue.valueChanges
-      .pipe(
-        debounceTime(500),
-        takeUntil(this.ngUnsubscribe$),
-        filter((value) => !!value))
-      .subscribe(() => {
-        this.searchInit();
-      });
-  }
-
-  ngOnDestroy() {
-    this.ngUnsubscribe$.next(true);
-    this.ngUnsubscribe$.complete();
-  }
-
-  checkUser() {
-    this.streamService.checkOaut()
-      .pipe(takeUntil(this.ngUnsubscribe$))
-      .subscribe((answer: User) => {
-        this.user = answer;
-      });
-  }
-
-  searchInit() {
-    this.streamService.searchQuery$.next(this.inputValue.value);
-    this.router.navigate([`/search/${this.inputValue.value}`]);
-  }
-
+  ngOnInit() {}
 }

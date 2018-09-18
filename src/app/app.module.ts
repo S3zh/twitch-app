@@ -3,25 +3,20 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {StreamViewComponent} from './stream-view/stream-view.component';
-import {GamesComponent} from './games/games.component';
-import {StreamsComponent} from './streams/streams.component';
+
 import {AppRoutingModule} from './app-routing.module';
 import {SafePipe} from './safe.pipe';
-import {SearchStreamComponent} from './search-stream/search-stream.component';
+
 import {MatButtonModule, MatToolbarModule, MatCardModule, MatInputModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {CoreModule} from './core/core.module';
+import {FormModule} from './form/form.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StreamViewComponent,
-    GamesComponent,
-    StreamsComponent,
-    SafePipe,
-    SearchStreamComponent
+    SafePipe
   ],
   imports: [
     BrowserModule,
@@ -34,7 +29,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatCardModule,
     MatInputModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule,
+    FormModule
   ],
   providers: [],
   bootstrap: [AppComponent],

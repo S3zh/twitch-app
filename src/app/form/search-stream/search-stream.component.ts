@@ -1,8 +1,9 @@
 import {Component, OnInit, OnDestroy, Input, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
-import {StreamService} from '../stream.service';
+import {StreamService} from '../../stream.service';
+import {SearchService} from '../../core/services/search.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {Stream} from '../stream';
+import {Stream} from '../../stream';
 
 @Component ({
   selector: 'app-search-stream',
@@ -17,11 +18,11 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
   streams: Array<Stream>;
   private ngUnsubscribe$ = new Subject();
 
-  constructor (private streamService: StreamService,
+  constructor (private searchService: SearchService,
                private cd: ChangeDetectorRef) {}
 
   ngOnInit () {
-    this.streamService.searchQuery$
+    this.searchService.searchQuery$
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((query) => {
         this.searchStreams(query);
@@ -35,7 +36,7 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
   }
 
   searchStreams(query: string) {
-    this.streamService.searchStreams(query)
+    this.searchService.searchStreams(query)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Stream>) => {
         this.isNotEmpty = !!answer.length;
