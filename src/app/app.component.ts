@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {StreamService} from './stream.service';
 import {User} from './user';
-import {debounceTime, takeUntil} from 'rxjs/operators';
-import {BehaviorSubject, Subject} from 'rxjs';
+import {debounceTime, takeUntil, filter} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
 
@@ -13,7 +13,6 @@ import {FormControl} from '@angular/forms';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  static checkSearchInit$ = new BehaviorSubject('');
   private ngUnsubscribe$ = new Subject();
   inputValue: FormControl = new FormControl('');
   user: User;
@@ -26,7 +25,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.inputValue.valueChanges
       .pipe(
         debounceTime(500),
-        takeUntil(this.ngUnsubscribe$))
+        takeUntil(this.ngUnsubscribe$),
+        filter((value) => !!value))
       .subscribe(() => {
         this.searchInit();
       });
@@ -46,8 +46,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   searchInit() {
-    if (!this.inputValue.value) {return; }
+    this.streamService.searchQuery$.next(this.inputValue.value);
     this.router.navigate([`/search/${this.inputValue.value}`]);
-    AppComponent.checkSearchInit$.next(this.inputValue.value);
   }
+
 }

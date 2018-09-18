@@ -1,16 +1,14 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, Input, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import {StreamService} from '../stream.service';
-import {ActivatedRoute} from '@angular/router';
-import {Location} from '@angular/common';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {Stream} from '../stream';
-import {AppComponent} from '../app.component';
 
 @Component ({
   selector: 'app-search-stream',
   templateUrl: './search-stream.component.html',
-  styleUrls: ['./search-stream.component.css']
+  styleUrls: ['./search-stream.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class SearchStreamComponent implements OnInit, OnDestroy {
@@ -20,14 +18,14 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
   private ngUnsubscribe$ = new Subject();
 
   constructor (private streamService: StreamService,
-               private route: ActivatedRoute,
-               private location: Location) {}
+               private cd: ChangeDetectorRef) {}
 
   ngOnInit () {
-    AppComponent.checkSearchInit$
+    this.streamService.searchQuery$
       .pipe(takeUntil(this.ngUnsubscribe$))
-      .subscribe((query: string) => {
+      .subscribe((query) => {
         this.searchStreams(query);
+        this.cd.markForCheck();
       });
   }
 
@@ -42,6 +40,7 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
       .subscribe((answer: Array<Stream>) => {
         this.isNotEmpty = !!answer.length;
         this.streams = answer;
+        this.cd.markForCheck();
       });
   }
 

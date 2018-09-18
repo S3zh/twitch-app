@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {Game} from './game';
 import {Stream} from './stream';
 import {User} from './user';
@@ -15,6 +15,8 @@ import {StreamResponse} from './stream-response';
 })
 
 export class StreamService {
+
+  searchQuery$ = new BehaviorSubject('search');
 
   constructor(private http: HttpClient) {}
 
