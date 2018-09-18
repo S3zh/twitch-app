@@ -19,8 +19,8 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
-        private route: ActivatedRoute,
-        private location: Location) {}
+              private route: ActivatedRoute,
+              private location: Location) {}
 
   ngOnInit () {
     this.getStream();

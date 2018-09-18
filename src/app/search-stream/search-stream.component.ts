@@ -8,7 +8,7 @@ import {Stream} from '../stream';
   selector: 'app-search-stream',
   templateUrl: './search-stream.component.html',
   styleUrls: ['./search-stream.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class SearchStreamComponent implements OnInit, OnDestroy {

@@ -1,5 +1,5 @@
 .twitch-connect:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 .example-fill-remaining-space {
   /* This fills the remaining space, by using flexbox.

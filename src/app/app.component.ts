@@ -13,9 +13,9 @@ import {FormControl} from '@angular/forms';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  private ngUnsubscribe$ = new Subject();
   inputValue: FormControl = new FormControl('');
   user: User;
+  private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
               private router: Router) {}
