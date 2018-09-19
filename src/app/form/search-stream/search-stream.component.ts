@@ -1,9 +1,8 @@
-import {Component, OnInit, OnDestroy, Input, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
-import {StreamService} from '../../stream.service';
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import {SearchService} from '../../core/services/search.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {Stream} from '../../stream';
+import {Stream} from '../interfaces/stream';
 
 @Component ({
   selector: 'app-search-stream',

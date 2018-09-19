@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SearchService} from '../services/search.service';
-import {User} from '../../user';
+import {User} from '../interfaces/user';
 import {Subject} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {debounceTime, filter, takeUntil} from 'rxjs/operators';

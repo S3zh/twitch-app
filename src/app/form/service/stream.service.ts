@@ -1,14 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
-import {BehaviorSubject, Observable, of} from 'rxjs';
-import {Game} from './game';
-import {Stream} from './stream';
-import {User} from './user';
-import {GameResponse} from './game-response';
-import {UserResponse} from './user-response';
-import {StreamsResponse} from './streams-response';
-import {StreamResponse} from './stream-response';
+import {Observable, of} from 'rxjs';
+import {Game} from '../interfaces/game';
+import {Stream} from '../interfaces/stream';
+import {GameResponse} from '../interfaces/game-response';
+import {StreamsResponse} from '../interfaces/streams-response';
+import {StreamResponse} from '../interfaces/stream-response';
 
 @Injectable({
   providedIn: 'root'

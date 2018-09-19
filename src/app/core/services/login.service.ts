@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {catchError, map} from 'rxjs/operators';
-import {User} from '../../user';
+import {User} from '../interfaces/user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {UserResponse} from '../../user-response';
+import {UserResponse} from '../interfaces/user-response';
 import {Observable, of} from 'rxjs';
 
 @Injectable({
