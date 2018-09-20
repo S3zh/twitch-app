@@ -7,10 +7,10 @@ import {GamesComponent} from './games/games.component';
 
 const routes: Routes = [
   {path: 'games', component: GamesComponent},
-  {path: '', redirectTo: '/games', pathMatch: 'full'},
   {path: 'games/:game', component: StreamsComponent},
   {path: 'stream/:name', component: StreamViewComponent},
   {path: 'search/:query', component: SearchStreamComponent},
+  {path: '', redirectTo: '/games', pathMatch: 'full'}
 ];
 
 @NgModule({
