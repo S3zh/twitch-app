@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {catchError, map} from 'rxjs/operators';
-import {StreamsResponse} from '../../form/interfaces/streams-response';
-import {Stream} from '../../form/interfaces/stream';
+import {StreamsResponse} from '../../main/interfaces/streams-response';
+import {Stream} from '../../main/interfaces/stream';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 

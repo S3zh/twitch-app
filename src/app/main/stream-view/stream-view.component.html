@@ -1,10 +1,11 @@
-<div *ngIf="stream; else elseBlock">
+<div>
   <div>
     <span class="stream-info">This is {{ stream.channel.display_name}} stream!</span>
     <span class="stream-info">Now playing in {{stream.game}}</span>
   </div>
+  <app-loading-spinner *ngIf="!stream"></app-loading-spinner>
   <div class="player">
-    <iframe
+    <iframe #iframe
       [src]="streamUrl | safe"
       height="600"
       width="80%"
@@ -26,8 +27,6 @@
     <span class="stream-info">Viewers: {{stream.viewers}}</span>
   </div>
 </div>
-<div>
-  <ng-template #elseBlock>Stream offline</ng-template>
-</div>
+
 
 

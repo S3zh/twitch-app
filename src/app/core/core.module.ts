@@ -6,6 +6,7 @@ import { CoreRoutingModule } from './core-routing.module';
 import {MatButtonModule, MatToolbarModule, MatInputModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RouterModule
   ]
 })
 export class CoreModule { }

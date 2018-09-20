@@ -14,7 +14,7 @@ import {Subject} from 'rxjs';
 
 export class StreamsComponent implements OnInit, OnDestroy {
 
-  private streams: Array<Stream>;
+  streams: Array<Stream>;
   private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,

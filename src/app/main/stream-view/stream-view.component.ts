@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import {StreamService} from '../service/stream.service';
 import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
@@ -16,6 +16,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   streamUrl: string;
   chatUrl: string;
   stream: Stream;
+  @ViewChild('iframe') frameStream: ElementRef;
   private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
@@ -42,4 +43,5 @@ export class StreamViewComponent implements OnInit, OnDestroy {
       });
 
   }
+
 }

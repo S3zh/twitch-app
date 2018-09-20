@@ -27,10 +27,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.inputValue.valueChanges
       .pipe(
         debounceTime(500),
-        takeUntil(this.ngUnsubscribe$),
-        filter((value) => !!value))
-      .subscribe(() => {
-        this.searchInit();
+        takeUntil(this.ngUnsubscribe$))
+      .subscribe((value) => {
+        if (!!value) {
+          this.searchInit();
+        } else {
+          this.gamesInit();
+        }
       });
   }
 
@@ -50,5 +53,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   searchInit() {
     this.searchService.searchQuery$.next(this.inputValue.value);
     this.router.navigate([`/search/${this.inputValue.value}`]);
+  }
+
+  gamesInit() {
+    this.router.navigate(['/games']);
   }
 }

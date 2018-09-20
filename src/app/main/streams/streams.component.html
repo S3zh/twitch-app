@@ -1,6 +1,7 @@
 <div class="page-title">
   <h1>Streams:</h1>
 </div>
+<app-loading-spinner *ngIf="!streams"></app-loading-spinner>
 <div class="display-stream">
   <mat-card *ngFor="let stream of streams" class="stream-card">
     <a routerLink="/stream/{{stream.channel.name}}">

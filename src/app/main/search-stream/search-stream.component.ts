@@ -15,6 +15,7 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
 
   isNotEmpty = true;
   streams: Array<Stream>;
+  isLoaded: boolean;
   private ngUnsubscribe$ = new Subject();
 
   constructor (private searchService: SearchService,
@@ -24,6 +25,7 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
     this.searchService.searchQuery$
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((query) => {
+        this.isLoaded = false;
         this.searchStreams(query);
         this.cd.markForCheck();
       });
@@ -38,6 +40,7 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
     this.searchService.searchStreams(query)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Stream>) => {
+        this.isLoaded = true;
         this.isNotEmpty = !!answer.length;
         this.streams = answer;
         this.cd.markForCheck();

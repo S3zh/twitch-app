@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import {AppRoutingModule} from './app-routing.module';
 import {CoreModule} from './core/core.module';
-import {FormModule} from './form/form.module';
+import {MainModule} from './main/main.module';
+import {SharedModule} from './shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,9 +12,10 @@ import {FormModule} from './form/form.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
-    FormModule
+    MainModule,
+    SharedModule,
+    RouterModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent],

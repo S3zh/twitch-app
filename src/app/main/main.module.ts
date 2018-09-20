@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormRoutingModule } from './form-routing.module';
-import { FormComponent } from './form.component';
+import { MainRoutingModule } from './main-routing.module';
+import { MainComponent } from './main.component';
 import {StreamViewComponent} from './stream-view/stream-view.component';
 import {GamesComponent} from './games/games.component';
 import {StreamsComponent} from './streams/streams.component';
@@ -12,11 +12,13 @@ import {MatMenuModule} from '@angular/material/menu';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormRoutingModule,
+    MainRoutingModule,
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
@@ -25,10 +27,12 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    SharedModule
   ],
   declarations: [
-    FormComponent,
+    MainComponent,
     StreamViewComponent,
     GamesComponent,
     StreamsComponent,
@@ -37,4 +41,4 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   exports: []
 })
-export class FormModule { }
+export class MainModule { }

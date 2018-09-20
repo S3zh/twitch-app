@@ -1,6 +1,7 @@
 <div class="page-title">
   <h1>Games:</h1>
 </div>
+<app-loading-spinner *ngIf="!games"></app-loading-spinner>
 <div class="display-games">
   <mat-card *ngFor="let game of games" class="game-card">
     <a routerLink="/games/{{game.game.name}}">
