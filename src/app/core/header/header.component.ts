@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         debounceTime(500),
         takeUntil(this.ngUnsubscribe$))
       .subscribe((value) => {
-        if (!!value) {
+        if (value) {
           this.searchInit();
         } else {
           this.gamesInit();

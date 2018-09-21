@@ -17,7 +17,6 @@ import {RouterModule} from '@angular/router';
     SharedModule,
     RouterModule.forRoot([])
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
