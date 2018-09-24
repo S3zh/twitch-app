@@ -36,6 +36,7 @@ export class StreamsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Stream>) => {
         this.streams = answer;
+        console.log(this.streams);
       });
   }
 

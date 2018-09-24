@@ -1,0 +1,9 @@
+<mat-card class="game-card">
+  <a routerLink="/games/{{name}}">
+    <mat-card-header class="game-card-header">
+      <mat-card-title class="game-card-title">{{name}}</mat-card-title>
+      <mat-card-subtitle>Зрителей: {{viewers}}</mat-card-subtitle>
+    </mat-card-header>
+    <img [src]="src">
+  </a>
+</mat-card>
