@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   inputValue: FormControl = new FormControl('');
   user: User;
+  userToken: string;
+  isAuth = false;
   private ngUnsubscribe$ = new Subject();
 
   constructor(private searchService: SearchService,
@@ -23,7 +25,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private router: Router) {}
 
   ngOnInit() {
-    this.checkUser();
+    this.userToken = window.location.hash.substr(14, 30);
+    this.checkUser(this.userToken);
     this.inputValue.valueChanges
       .pipe(
         debounceTime(500),
@@ -42,11 +45,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe$.complete();
   }
 
-  checkUser() {
-    this.loginService.checkOaut()
+  checkUser(token: string) {
+    this.loginService.checkOaut(token)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: User) => {
         this.user = answer;
+        this.isAuth = this.user.valid;
+        console.log(this.user);
       });
   }
 
@@ -57,5 +62,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   gamesInit() {
     this.router.navigate(['/games']);
+  }
+
+  logOut(token: string) {
+    this.loginService.logOut(token);
+    this.isAuth = false;
+    this.user = null;
+    this.userToken = '';
   }
 }

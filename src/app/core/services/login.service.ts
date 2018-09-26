@@ -12,15 +12,19 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  checkOaut(): Observable<User> {
+  logOut(token: string) {
+    return this.http.post(`https://id.twitch.tv/oauth2/revoke?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&token=${token}`,'');
+  }
+
+  checkOaut(token: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Accept':  'application/vnd.twitchtv.v5+json',
         'Client-ID': '4osqgh9a16thvsc8qw4dttcf6mrodk',
-        'Authorization': 'OAuth mpuzqk755l94o03w1gcsou6o16m1ol'
+        'Authorization': `OAuth ${token}`
       })
     };
-    return this.http.get<UserResponse>('https://api.twitch.tv/kraken', httpOptions)
+    return this.http.get<UserResponse>('https://api.twitch.tv/kraken/', httpOptions)
       .pipe(map(result => result.token),
         catchError(() =>
           of ({autorization: {},
