@@ -1,15 +1,15 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {StreamService} from '../service/stream.service';
-import {ActivatedRoute} from '@angular/router';
-import {Location} from '@angular/common';
-import {Stream} from '../interfaces/stream';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { StreamService } from '../service/stream.service';
+import { ActivatedRoute } from '@angular/router';
+import { Stream } from '../interfaces/stream';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-streams',
   templateUrl: './streams.component.html',
   styleUrls: ['./streams.component.css']
+  //OnPush
 })
 
 export class StreamsComponent implements OnInit, OnDestroy {
@@ -18,8 +18,8 @@ export class StreamsComponent implements OnInit, OnDestroy {
   private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
-              private route: ActivatedRoute,
-              private location: Location) {}
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.getStreams();

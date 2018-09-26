@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CoreRoutingModule } from './core-routing.module';
-import {MatButtonModule, MatToolbarModule, MatInputModule} from '@angular/material';
-import {MatMenuModule} from '@angular/material/menu';
-import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {RouterModule} from '@angular/router';
+import { MatButtonModule, MatInputModule, MatToolbarModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {GamesComponent} from '../main/games/games.component';
-import {SharedModule} from '../shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -23,18 +22,18 @@ import {SharedModule} from '../shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    SharedModule
+    HttpClientModule
   ],
   declarations: [
     HeaderComponent,
     FooterComponent,
-    LoginComponent,
-/*    GamesComponent,*/
+    LoginComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     RouterModule
-  ]
+  ],
 })
-export class CoreModule { }
+export class CoreModule {
+}

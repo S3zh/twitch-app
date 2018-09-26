@@ -1,16 +1,17 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SearchService} from '../services/search.service';
-import {User} from '../interfaces/user';
-import {Subject} from 'rxjs';
-import {FormControl} from '@angular/forms';
-import {debounceTime, filter, takeUntil} from 'rxjs/operators';
-import {Router} from '@angular/router';
-import {LoginService} from '../services/login.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { SearchService } from '../services/search.service';
+import { User } from '../interfaces/user';
+import { Subject } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
+  //OnPush
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private searchService: SearchService,
               private loginService: LoginService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.userToken = window.location.hash.substr(14, 30);

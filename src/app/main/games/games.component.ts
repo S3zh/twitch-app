@@ -1,13 +1,14 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {StreamService} from '../service/stream.service';
-import {Game} from '../interfaces/game';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { StreamService } from '../service/stream.service';
+import { Game } from '../interfaces/game';
 import { takeUntil } from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 
-@Component ({
+@Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
   styleUrls: ['./games.component.css']
+  //OnPush
 })
 
 export class GamesComponent implements OnInit, OnDestroy {
@@ -15,7 +16,8 @@ export class GamesComponent implements OnInit, OnDestroy {
   games: Array<Game>;
   private ngUnsubscribe$ = new Subject();
 
-  constructor (private streamService: StreamService) {}
+  constructor(private streamService: StreamService) {
+  }
 
   ngOnInit() {
     this.getGames();
@@ -26,7 +28,7 @@ export class GamesComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe$.complete();
   }
 
-  getGames () {
+  getGames() {
     this.streamService.getGames()
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Game>) => {
