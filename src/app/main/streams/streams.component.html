@@ -1,11 +1,12 @@
 <div class="page-title">
   <h1>Streams:</h1>
 </div>
+<app-loading-spinner *ngIf="!streams"></app-loading-spinner>
 <div class="display-stream">
-  <mat-card *ngFor="let stream of streams">
+  <mat-card *ngFor="let stream of streams" class="stream-card">
     <a routerLink="/stream/{{stream.channel.name}}">
-      <mat-card-header>
-        <mat-card-title>{{stream.channel.display_name}}</mat-card-title>
+      <mat-card-header class="stream-card-header">
+        <mat-card-title class="stream-card-title">{{stream.channel.display_name}}</mat-card-title>
         <mat-card-subtitle>Зрителей:{{stream.viewers}}</mat-card-subtitle>
       </mat-card-header>
       <img src="{{stream.preview.large}}">

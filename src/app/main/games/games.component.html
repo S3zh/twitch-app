@@ -1,0 +1,15 @@
+<div class="page-title">
+  <h1>Games:</h1>
+</div>
+<app-loading-spinner *ngIf="!games"></app-loading-spinner>
+<div class="display-games">
+  <mat-card *ngFor="let game of games" class="game-card">
+    <a routerLink="/games/{{game.game.name}}">
+      <mat-card-header class="game-card-header">
+        <mat-card-title class="game-card-title">{{game.game.name}}</mat-card-title>
+        <mat-card-subtitle>Зрителей: {{game.viewers}}</mat-card-subtitle>
+      </mat-card-header>
+      <img src="{{game.game.box.large}}">
+    </a>
+  </mat-card>
+</div>

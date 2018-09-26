@@ -1,40 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms';
-import {StreamViewComponent} from './stream-view/stream-view.component';
-import {GamesComponent} from './games/games.component';
-import {StreamsComponent} from './streams/streams.component';
-import {AppRoutingModule} from './app-routing.module';
-import {SafePipe} from './safe.pipe';
-import {SearchStreamComponent} from './search-stream/search-stream.component';
-import {MatButtonModule, MatToolbarModule, MatCardModule, MatProgressSpinnerModule} from '@angular/material';
-import {MatMenuModule} from '@angular/material/menu';
-
-
+import {CoreModule} from './core/core.module';
+import {MainModule} from './main/main.module';
+import {SharedModule} from './shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    StreamViewComponent,
-    GamesComponent,
-    StreamsComponent,
-    SafePipe,
-    SearchStreamComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    AppRoutingModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
+    CoreModule,
+    MainModule,
+    SharedModule,
+    RouterModule.forRoot([])
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

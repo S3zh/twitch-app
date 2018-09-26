@@ -1,8 +1,8 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {StreamService} from '../stream.service';
+import {StreamService} from '../service/stream.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
-import {Stream} from '../stream';
+import {Stream} from '../interfaces/stream';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 
@@ -14,7 +14,7 @@ import {Subject} from 'rxjs';
 
 export class StreamsComponent implements OnInit, OnDestroy {
 
-  private streams: Array<Stream>;
+  streams: Array<Stream>;
   private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,

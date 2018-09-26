@@ -1,35 +1,30 @@
-* {
-/*	padding: 0;
-	margin: 0;*/
-}
-
 .display-games {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
-h1{
-	text-align: center;
+.page-title h1{
+  text-align: center;
 }
 
-a{
-	text-decoration: none;
-	color: black;
+.display-games a{
+  text-decoration: none;
+  color: black;
 }
 
-a:hover {
-	color: blue;
+.display-games a:hover {
+  color: blue;
 }
 
-mat-card {
+.game-card {
   text-align: center;
   margin: 5px;
   padding: 10px;
   width: 22%;
 }
 
-mat-card-header {
+.game-card-header {
   justify-content: center;
 }
 
@@ -37,14 +32,15 @@ mat-card-header {
   text-align: center;
 }
 
-mat-card img {
+.game-card img {
   width: 100%;
 }
 
-mat-card-title {
-  font-size: 16px !important;
+.game-card-title {
+  font-size: 16px;
 }
 
 .page-title{
   margin: 10px 0;
 }
+

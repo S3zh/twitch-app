@@ -1,12 +1,3 @@
-<mat-toolbar color="primary">
-  <a href="#"><span>Twitch App</span></a>
-  <button mat-button routerLink="/games" color="" >Games</button>
-  <span class="example-fill-remaining-space"></span>
-  <a href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&redirect_uri=http://localhost&scope=viewing_activity_read&state=ycz0cgwkx0p721pu8iamtdzjq2gpzn">
-    <img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" class="twitch-connect"/>
-  </a>
-</mat-toolbar>
+<app-header></app-header>
 <router-outlet></router-outlet>
-<mat-toolbar color="primary" class="footer">
-  <span>Created by S3zh</span>
-</mat-toolbar>
+<app-footer></app-footer>

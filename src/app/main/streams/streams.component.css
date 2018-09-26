@@ -1,0 +1,45 @@
+.page-title {
+  text-align: center;
+}
+
+.display-stream a {
+  text-decoration: none;
+  color: black;
+}
+
+.display-stream a:hover {
+  color: blue;
+}
+
+.display-stream {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.stream-card {
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+  width: 22%;
+}
+
+.stream-card-header {
+  justify-content: center;
+}
+
+.mat-card-header-text {
+  text-align: center;
+}
+
+.stream-card img {
+  width: 100%;
+}
+
+.stream-card-title {
+  font-size: 16px;
+}
+
+.page-title{
+  margin: 10px 0;
+}
