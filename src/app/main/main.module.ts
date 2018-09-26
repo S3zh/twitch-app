@@ -24,7 +24,7 @@ import {SharedModule} from '../shared/shared.module';
     MatToolbarModule,
     MatCardModule,
     MatInputModule,
-    BrowserAnimationsModule,
+/*    BrowserAnimationsModule,*/
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,

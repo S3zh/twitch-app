@@ -7,6 +7,10 @@ import {MatButtonModule, MatToolbarModule, MatInputModule} from '@angular/materi
 import {MatMenuModule} from '@angular/material/menu';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {GamesComponent} from '../main/games/games.component';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -17,11 +21,15 @@ import {RouterModule} from '@angular/router';
     MatButtonModule,
     MatMenuModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    SharedModule
   ],
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+/*    GamesComponent,*/
   ],
   exports: [
     HeaderComponent,

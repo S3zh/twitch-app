@@ -10,7 +10,13 @@ import {Observable, of} from 'rxjs';
 })
 export class LoginService {
 
+  isAutorized = false;
+
   constructor(private http: HttpClient) {}
+
+  setIsAutorized(state: boolean) {
+    this.isAutorized = state;
+  }
 
   logOut(token: string) {
     return this.http.post(`https://id.twitch.tv/oauth2/revoke?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&token=${token}`,'');

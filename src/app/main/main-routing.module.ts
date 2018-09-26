@@ -6,11 +6,11 @@ import {StreamViewComponent} from './stream-view/stream-view.component';
 import {GamesComponent} from './games/games.component';
 
 const routes: Routes = [
-  {path: 'games', component: GamesComponent},
-  {path: 'games/:game', component: StreamsComponent},
+  {path: '', component: GamesComponent},
+/*  {path: 'games/:game', component: StreamsComponent},
   {path: 'stream/:name', component: StreamViewComponent},
-  {path: 'search/:query', component: SearchStreamComponent},
-  {path: '', redirectTo: '/games', pathMatch: 'full'}
+  {path: 'search/:query', component: SearchStreamComponent},*/
+/*  {path: '', redirectTo: '/games', pathMatch: 'full'}*/
 ];
 
 @NgModule({
