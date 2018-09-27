@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
-import { MainComponent } from './main.component';
 import { StreamViewComponent } from './stream-view/stream-view.component';
 import { GamesComponent } from './games/games.component';
 import { StreamsComponent } from './streams/streams.component';
@@ -32,7 +31,6 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   declarations: [
-    MainComponent,
     StreamViewComponent,
     GamesComponent,
     StreamsComponent,

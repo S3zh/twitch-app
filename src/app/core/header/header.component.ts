@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { User } from '../interfaces/user';
 import { Subject } from 'rxjs';
@@ -10,8 +10,8 @@ import { LoginService } from '../services/login.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
-  //OnPush
+  styleUrls: ['./header.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
@@ -23,7 +23,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private searchService: SearchService,
               private loginService: LoginService,
-              private router: Router) {
+              private router: Router,
+              private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -39,6 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         } else {
           this.gamesInit();
         }
+        this.cd.markForCheck();
       });
   }
 
@@ -54,7 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.user = answer;
         this.isAuth = this.user.valid;
         this.loginService.setIsAutorized(this.isAuth);
-        console.log(this.user);
+        this.cd.markForCheck();
       });
   }
 
@@ -70,7 +72,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logOut(token: string) {
     this.loginService.logOut(token);
     this.isAuth = false;
+    this.loginService.setIsAutorized(this.isAuth);
     this.user = null;
     this.userToken = '';
+    this.cd.markForCheck();
   }
 }

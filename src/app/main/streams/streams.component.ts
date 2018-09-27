@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import { StreamService } from '../service/stream.service';
 import { ActivatedRoute } from '@angular/router';
 import { Stream } from '../interfaces/stream';
@@ -8,8 +8,8 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-streams',
   templateUrl: './streams.component.html',
-  styleUrls: ['./streams.component.css']
-  //OnPush
+  styleUrls: ['./streams.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class StreamsComponent implements OnInit, OnDestroy {
@@ -18,7 +18,8 @@ export class StreamsComponent implements OnInit, OnDestroy {
   private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -36,6 +37,7 @@ export class StreamsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Stream>) => {
         this.streams = answer;
+        this.cd.markForCheck();
       });
   }
 

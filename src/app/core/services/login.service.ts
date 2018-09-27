@@ -10,7 +10,7 @@ import { Observable, of } from 'rxjs';
 })
 export class LoginService {
 
-  isAutorized = true;
+  isAutorized: boolean;
 
   constructor(private http: HttpClient) {
   }
