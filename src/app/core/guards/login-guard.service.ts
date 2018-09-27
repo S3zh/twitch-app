@@ -12,7 +12,7 @@ export class LoginGuardService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.loginService.isAutorized) {
+    if (this.loginService.getUser()) { // проверка, есть ли в localeStorage информация о пользователе
       return true;
     } else {
       this.router.navigate(['/login']);

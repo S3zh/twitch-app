@@ -3,27 +3,19 @@ import { catchError, map } from 'rxjs/operators';
 import { User } from '../interfaces/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserResponse } from '../interfaces/user-response';
-import { Observable, of } from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  isAutorized: boolean;
+  localKey = 'user';
 
   constructor(private http: HttpClient) {
   }
 
-  setIsAutorized(state: boolean) {
-    this.isAutorized = state;
-  }
-
-  logOut(token: string) {
-    return this.http.post(`https://id.twitch.tv/oauth2/revoke?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&token=${token}`, '');
-  }
-
-  checkOaut(token: string): Observable<User> {
+  authUser(token: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/vnd.twitchtv.v5+json',
@@ -45,4 +37,15 @@ export class LoginService {
       );
   }
 
+  setUser(user: User) {
+    localStorage.setItem(this.localKey, JSON.stringify(user));
+  }
+
+  getUser() {
+    return JSON.parse(localStorage.getItem(this.localKey));
+  }
+
+  removeUser() {
+    localStorage.removeItem(this.localKey);
+  }
 }

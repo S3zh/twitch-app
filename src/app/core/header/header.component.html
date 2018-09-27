@@ -8,7 +8,7 @@
   <span class="example-fill-remaining-space"></span>
   <div *ngIf="isAuth; else displayLogin">
     Hello, {{user.user_name}}
-    <button mat-button (click)="logOut(userToken)">Log out</button>
+    <button mat-button (click)="logOut()">Log out</button>
   </div>
   <ng-template #displayLogin>
     <a
