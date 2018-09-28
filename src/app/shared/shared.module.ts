@@ -6,6 +6,11 @@ import { GamesCardComponent } from './games-card/games-card.component';
 import { MatCardModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import { StreamCardComponent } from './stream-card/stream-card.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+const COMPONENTS = [
+  LoadingSpinnerComponent
+];
 
 @NgModule({
   imports: [
@@ -25,4 +30,5 @@ import { StreamCardComponent } from './stream-card/stream-card.component';
     StreamCardComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

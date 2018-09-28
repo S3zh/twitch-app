@@ -1,15 +1,15 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {StreamService} from '../service/stream.service';
-import {ActivatedRoute} from '@angular/router';
-import {Location} from '@angular/common';
-import {Stream} from '../interfaces/stream';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import { StreamService } from '../service/stream.service';
+import { ActivatedRoute } from '@angular/router';
+import { Stream } from '../interfaces/stream';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-streams',
   templateUrl: './streams.component.html',
-  styleUrls: ['./streams.component.css']
+  styleUrls: ['./streams.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class StreamsComponent implements OnInit, OnDestroy {
@@ -19,7 +19,8 @@ export class StreamsComponent implements OnInit, OnDestroy {
 
   constructor(private streamService: StreamService,
               private route: ActivatedRoute,
-              private location: Location) {}
+              private cd: ChangeDetectorRef) {
+  }
 
   ngOnInit() {
     this.getStreams();
@@ -36,7 +37,7 @@ export class StreamsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Stream>) => {
         this.streams = answer;
-        console.log(this.streams);
+        this.cd.markForCheck();
       });
   }
 

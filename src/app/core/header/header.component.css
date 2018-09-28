@@ -1,6 +1,7 @@
 .twitch-connect:hover {
   cursor: pointer;
 }
+
 .example-fill-remaining-space {
   /* This fills the remaining space, by using flexbox.
      Every toolbar row uses a flexbox row layout. */
@@ -10,9 +11,11 @@
 .header a {
   text-decoration: none;
   color: white;
-}
-.header button {
   margin: 0 10px;
+}
+
+.header a:hover {
+  text-decoration: underline;
 }
 
 .header img {

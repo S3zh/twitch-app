@@ -1,10 +1,10 @@
-import {Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
-import {SearchService} from '../../core/services/search.service';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
-import {Stream} from '../interfaces/stream';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { SearchService } from '../../core/services/search.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { Stream } from '../interfaces/stream';
 
-@Component ({
+@Component({
   selector: 'app-search-stream',
   templateUrl: './search-stream.component.html',
   styleUrls: ['./search-stream.component.css'],
@@ -18,10 +18,11 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
   isLoaded: boolean;
   private ngUnsubscribe$ = new Subject();
 
-  constructor (private searchService: SearchService,
-               private cd: ChangeDetectorRef) {}
+  constructor(private searchService: SearchService,
+              private cd: ChangeDetectorRef) {
+  }
 
-  ngOnInit () {
+  ngOnInit() {
     this.searchService.searchQuery$
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((query) => {
