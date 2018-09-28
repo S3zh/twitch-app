@@ -1,13 +1,10 @@
 .page-title {
   text-align: center;
+  margin: 10px 0;
 }
 
 .display-stream {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-}
-
-.page-title{
-  margin: 10px 0;
 }
