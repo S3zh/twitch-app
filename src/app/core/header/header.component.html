@@ -1,6 +1,7 @@
 <mat-toolbar color="primary" class="header">
-  <a routerLink=""><span>Twitch App</span></a>
-  <a routerLink="">Games</a>
+  <button mat-button (click)="changeSidenav(true)">
+    <i class="material-icons">menu</i>
+  </button>
   <span class="example-fill-remaining-space"></span>
   <mat-form-field class="example-full-width search-field">
     <input matInput [formControl]="inputValue" placeholder="Search">

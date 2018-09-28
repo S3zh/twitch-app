@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { User } from '../interfaces/user';
 import { Subject } from 'rxjs';
@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: User;
   userToken: string;
   isAuth = false;
+  @Output() toggle = new EventEmitter<boolean>();
   private ngUnsubscribe$ = new Subject();
 
   constructor(private searchService: SearchService,
@@ -97,5 +98,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userToken = ''; // удаляем токен по которому была авторизация
     this.router.navigate(['/login']); // перенаправляем его для авторизации
     this.cd.markForCheck();
+  }
+
+  changeSidenav(state: boolean) {
+    this.toggle.emit(state);
   }
 }

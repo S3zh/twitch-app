@@ -1,0 +1,19 @@
+.sidenav-menu {
+  font-size: 22px;
+}
+
+.sidenav-menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidenav-menu a:hover {
+  text-decoration: underline;
+}
+
+.menu-list li {
+  list-style: none;
+  margin: 5px;
+  padding: 10px 40px;
+  border: 1px solid grey;
+}
