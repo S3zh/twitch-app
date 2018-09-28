@@ -4,7 +4,7 @@
   justify-content: space-around;
 }
 
-.display-stream a{
+.display-stream a {
   text-decoration: none;
   color: black;
 }
@@ -36,7 +36,7 @@
   font-size: 16px;
 }
 
-.page-title{
+.page-title {
   margin: 10px 0;
   text-align: center;
 }

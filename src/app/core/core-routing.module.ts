@@ -1,20 +1,28 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { LoginGuardService } from './guards/login-guard.service';
+
 
 const routes: Routes = [
   {
-    path: 'main',
+    path: '',
+    canActivate: [LoginGuardService],
     loadChildren: '../main/main.module#MainModule'
   },
   {
-    path: '',
-    redirectTo: 'main',
-    pathMatch: 'full'
+    path: 'login',
+    component: LoginComponent
   },
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes, {enableTracing: false})],
   exports: [RouterModule]
 })
-export class CoreRoutingModule { }
+export class CoreRoutingModule {
+}

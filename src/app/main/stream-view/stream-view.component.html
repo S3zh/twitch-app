@@ -6,12 +6,12 @@
   <app-loading-spinner *ngIf="!stream"></app-loading-spinner>
   <div class="player">
     <iframe #iframe
-      [src]="streamUrl | safe"
-      height="600"
-      width="80%"
-      frameborder="0"
-      scrolling="no"
-      allowfullscreen="true">
+            [src]="streamUrl | safe"
+            height="600"
+            width="80%"
+            frameborder="0"
+            scrolling="no"
+            allowfullscreen="true">
     </iframe>
     <iframe
       frameborder="0"
