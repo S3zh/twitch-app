@@ -35,4 +35,5 @@ export interface Stream {
   stream_type: string;
   video_height: number;
   viewers: number;
+  _id: number;
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CoreRoutingModule } from './core-routing.module';
-import { MatButtonModule, MatInputModule, MatToolbarModule, MatSidenavModule } from '@angular/material';
+import { MatButtonModule, MatInputModule, MatToolbarModule, MatSidenavModule, MatExpansionModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -25,7 +25,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatExpansionModule
   ],
   declarations: [
     HeaderComponent,

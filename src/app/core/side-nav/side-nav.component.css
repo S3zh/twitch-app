@@ -15,5 +15,12 @@
   list-style: none;
   margin: 5px;
   padding: 10px 40px;
-  border: 1px solid grey;
+}
+
+.spoiler {
+  background-color: #673ab7;
+}
+
+.spoiler-header {
+  color: white;
 }

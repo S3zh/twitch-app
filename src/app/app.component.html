@@ -4,9 +4,10 @@
                mode="over"
                [fixedInViewport]="true"
                hasBackdrop="true"
-               class="sidenav"
-               (click)="sidenav.close()">
-    <app-side-nav></app-side-nav>
+               class="sidenav">
+    <app-side-nav>
+      <span (click)="sidenav.toggle()">Twitch app</span>
+    </app-side-nav>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>

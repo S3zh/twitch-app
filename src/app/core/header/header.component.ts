@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         } else { // если все нормально
           this.user = answer; // записываем информацию пользователя, что бы использовать его ник в хедере
           this.isAuth = this.user.valid; // меняем метку на true, чтобы убрать кнопку авторизации
-          this.loginService.setUser(this.user); // записываем информацию о пользователе в localeStorage
+          this.loginService.setUser(this.user, token); // записываем информацию о пользователе в localeStorage
           this.router.navigate(['']); // отправляем его на страницу с играми, так как он авторизовался
         }
         this.cd.markForCheck();

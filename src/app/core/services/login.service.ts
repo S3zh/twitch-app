@@ -10,7 +10,8 @@ import {Observable, of} from 'rxjs';
 })
 export class LoginService {
 
-  localKey = 'user';
+  localKeyUser = 'user';
+  localKeyToken = 'token';
 
   constructor(private http: HttpClient) {
   }
@@ -37,15 +38,21 @@ export class LoginService {
       );
   }
 
-  setUser(user: User) {
-    localStorage.setItem(this.localKey, JSON.stringify(user));
+  setUser(user: User, token: string) {
+    localStorage.setItem(this.localKeyUser, JSON.stringify(user));
+    localStorage.setItem(this.localKeyToken, token);
   }
 
   getUser() {
-    return JSON.parse(localStorage.getItem(this.localKey));
+    return JSON.parse(localStorage.getItem(this.localKeyUser));
+  }
+
+  getToken() {
+    return localStorage.getItem(this.localKeyToken);
   }
 
   removeUser() {
-    localStorage.removeItem(this.localKey);
+    localStorage.removeItem(this.localKeyUser);
+    localStorage.removeItem(this.localKeyToken);
   }
 }

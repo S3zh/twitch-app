@@ -1,9 +1,18 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { StreamService } from '../service/stream.service';
 import { ActivatedRoute } from '@angular/router';
 import { Stream } from '../interfaces/stream';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import {FollowService} from '../service/follow.service';
 
 @Component({
   selector: 'app-stream-view',
@@ -20,6 +29,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
+              private followService: FollowService,
               private route: ActivatedRoute,
               private cd: ChangeDetectorRef) {
   }
@@ -43,7 +53,14 @@ export class StreamViewComponent implements OnInit, OnDestroy {
         this.chatUrl = `https://www.twitch.tv/embed/${this.stream.channel['name']}/chat`;
         this.cd.markForCheck();
       });
+  }
 
+  checkFollow(channelId: number) {
+    this.followService.checkFollow(channelId)
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe(answer => {
+        console.log(answer);
+      });
   }
 
 }
