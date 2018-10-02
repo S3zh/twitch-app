@@ -2,10 +2,8 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef,
   OnDestroy,
   OnInit,
-  ViewChild
 } from '@angular/core';
 import { StreamService } from '../service/stream.service';
 import { ActivatedRoute } from '@angular/router';
@@ -25,7 +23,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   streamUrl: string;
   chatUrl: string;
   stream: Stream;
-  @ViewChild('iframe') frameStream: ElementRef;
+  isFollow = false;
   private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
@@ -49,6 +47,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Stream) => {
         this.stream = answer;
+        this.checkFollow(this.stream.channel._id);
         this.streamUrl = `https://player.twitch.tv/?channel=${this.stream.channel['name']}&autoplay=false`;
         this.chatUrl = `https://www.twitch.tv/embed/${this.stream.channel['name']}/chat`;
         this.cd.markForCheck();
@@ -59,8 +58,34 @@ export class StreamViewComponent implements OnInit, OnDestroy {
     this.followService.checkFollow(channelId)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe(answer => {
-        console.log(answer);
+        if (answer.display_name) {
+          this.isFollow = true;
+        } else {
+          this.isFollow = false;
+        }
+        this.cd.markForCheck();
       });
   }
 
+  follow() {
+    this.followService.follow(this.stream.channel._id)
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((answer) => {
+        console.log(answer);
+        this.followService.followInit$.next(true);
+        this.isFollow = true;
+        this.cd.markForCheck();
+      });
+  }
+
+  unfollow() {
+    this.followService.unfollow(this.stream.channel._id)
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((answer => {
+        console.log(answer);
+        this.followService.followInit$.next(true);
+        this.isFollow = false;
+        this.cd.markForCheck();
+      }));
+  }
 }

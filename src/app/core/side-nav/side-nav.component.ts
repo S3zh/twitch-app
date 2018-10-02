@@ -3,6 +3,7 @@ import {Stream} from '../../main/interfaces/stream';
 import {SidebarService} from '../services/sidebar.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {FollowService} from '../../main/service/follow.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -15,10 +16,15 @@ export class SideNavComponent implements OnInit, OnDestroy {
   followStreams: Array<Stream>;
   private ngUnsubscribe$ = new Subject();
 
-  constructor(private sidebarService: SidebarService) { }
+  constructor(private sidebarService: SidebarService,
+              private followService: FollowService) { }
 
   ngOnInit() {
-    this.getFollowStreams();
+    this.followService.followInit$
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe(() => {
+        this.getFollowStreams();
+      });
   }
 
   ngOnDestroy() {

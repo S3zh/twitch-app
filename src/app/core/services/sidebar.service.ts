@@ -17,7 +17,6 @@ export class SidebarService {
 
   getFollowStreams(): Observable<Array<Stream>> {
     const token = this.loginService.getToken();
-    console.log(token);
     const httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/vnd.twitchtv.v5+json',
@@ -26,19 +25,21 @@ export class SidebarService {
       })
     };
     return this.http.get<StreamsResponse>('https://api.twitch.tv/kraken/streams/followed', httpOptions)
-      .pipe(map(result => result.streams),
-            catchError(() =>
-              of([{
-                average_fps: 0,
-                channel: {},
-                created_at: '',
-                delay: 0,
-                game: '',
-                is_playlist: false,
-                preview: {},
-                stream_type: '',
-                video_height: 0,
-                viewers: 0
-              }] as Array<Stream>)));
+      .pipe(
+        map(result => result.streams),
+        catchError(() =>
+          of([{
+            average_fps: 0,
+            channel: {},
+            created_at: '',
+            delay: 0,
+            game: '',
+            is_playlist: false,
+            preview: {},
+            stream_type: '',
+            video_height: 0,
+            viewers: 0
+          }] as Array<Stream>))
+      );
   }
 }
