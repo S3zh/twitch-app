@@ -23,6 +23,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   streamUrl: string;
   chatUrl: string;
   stream: Stream;
+  isLoading = true;
   isFollow = false;
   private ngUnsubscribe$ = new Subject();
 
@@ -33,7 +34,13 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getStream();
+    this.streamService.currentStream$
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((name) => {
+        this.isLoading = true;
+        this.getStream(name);
+        this.cd.markForCheck();
+      });
   }
 
   ngOnDestroy() {
@@ -41,12 +48,12 @@ export class StreamViewComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe$.complete();
   }
 
-  getStream() {
-    const name = this.route.snapshot.paramMap.get('name');
+  getStream(name: string) {
     this.streamService.getStream(name)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Stream) => {
         this.stream = answer;
+        this.isLoading = false;
         this.checkFollow(this.stream.channel._id);
         this.streamUrl = `https://player.twitch.tv/?channel=${this.stream.channel['name']}&autoplay=false`;
         this.chatUrl = `https://www.twitch.tv/embed/${this.stream.channel['name']}/chat`;
@@ -57,12 +64,13 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   checkFollow(channelId: number) {
     this.followService.checkFollow(channelId)
       .pipe(takeUntil(this.ngUnsubscribe$))
-      .subscribe(answer => {
-        if (answer.display_name) {
-          this.isFollow = true;
-        } else {
-          this.isFollow = false;
-        }
+      .subscribe(
+        () => {
+        this.isFollow = true;
+        this.cd.markForCheck();
+      },
+       () => {
+        this.isFollow = false;
         this.cd.markForCheck();
       });
   }
@@ -70,8 +78,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   follow() {
     this.followService.follow(this.stream.channel._id)
       .pipe(takeUntil(this.ngUnsubscribe$))
-      .subscribe((answer) => {
-        console.log(answer);
+      .subscribe(() => {
         this.followService.followInit$.next(true);
         this.isFollow = true;
         this.cd.markForCheck();
@@ -81,11 +88,10 @@ export class StreamViewComponent implements OnInit, OnDestroy {
   unfollow() {
     this.followService.unfollow(this.stream.channel._id)
       .pipe(takeUntil(this.ngUnsubscribe$))
-      .subscribe((answer => {
-        console.log(answer);
+      .subscribe(() => {
         this.followService.followInit$.next(true);
         this.isFollow = false;
         this.cd.markForCheck();
-      }));
+      });
   }
 }

@@ -1,5 +1,5 @@
 <mat-card class="stream-card">
-  <a routerLink="/stream/{{name}}">
+  <a (click)="openStream()">
     <mat-card-header class="stream-card-header">
       <mat-card-title class="stream-card-title">{{name}}</mat-card-title>
       <mat-card-subtitle>Зрителей:{{viewers}}</mat-card-subtitle>

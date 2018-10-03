@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {Router} from '@angular/router';
+import {StreamService} from '../../main/service/stream.service';
 
 @Component({
   selector: 'app-stream-card',
@@ -12,4 +14,12 @@ export class StreamCardComponent {
   @Input() viewers: number;
   @Input() src: string;
 
+  constructor(private route: Router,
+              private streamService: StreamService) {
+  }
+
+  openStream() {
+    this.streamService.currentStream$.next(this.name);
+    this.route.navigate([`/stream/${this.name}`]);
+  }
 }

@@ -14,7 +14,7 @@
           </mat-expansion-panel-header>
           <div *ngFor="let stream of followStreams; trackBy: stream?.channel.name">
             <li >
-              <a routerLink="/stream/{{stream.channel.name}}">
+              <a (click)="openStream(stream.channel.name)">
                 <img [src]="stream.channel.logo" width="30" height="30">
                 <span>  {{stream.channel.name}}  </span>
                 <span>{{stream.channel.game}}</span>

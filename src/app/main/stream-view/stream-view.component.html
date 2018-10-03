@@ -1,4 +1,5 @@
-<div *ngIf="stream">
+<app-loading-spinner *ngIf="isLoading; else display"></app-loading-spinner>
+<ng-template #display>
   <div>
     <span class="stream-info">This is {{ stream.channel.display_name}} stream!</span>
     <span class="stream-info">Now playing in {{stream.game}}</span>
@@ -7,7 +8,6 @@
       <button mat-raised-button color="primary" (click)="follow()">Follow</button>
     </ng-template>
   </div>
-  <app-loading-spinner *ngIf="!stream"></app-loading-spinner>
   <div class="player">
     <iframe [src]="streamUrl | safe"
             height="600"
@@ -28,7 +28,7 @@
     <span class="stream-info">{{stream.channel.status}} </span>
     <span class="stream-info">Viewers: {{stream.viewers}}</span>
   </div>
-</div>
+</ng-template>
 
 
 
