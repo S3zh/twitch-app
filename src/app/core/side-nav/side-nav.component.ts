@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {Stream} from '../../main/interfaces/stream';
 import {SidebarService} from '../services/sidebar.service';
 import {takeUntil} from 'rxjs/operators';
@@ -21,13 +21,15 @@ export class SideNavComponent implements OnInit, OnDestroy {
   constructor(private sidebarService: SidebarService,
               private followService: FollowService,
               private streamService: StreamService,
-              private route: Router) { }
+              private route: Router,
+              private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.followService.followInit$
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe(() => {
         this.getFollowStreams();
+        this.cd.markForCheck();
       });
   }
 
@@ -41,6 +43,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer) => {
         this.followStreams = answer;
+        this.cd.markForCheck();
       });
   }
 

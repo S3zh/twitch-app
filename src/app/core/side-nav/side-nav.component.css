@@ -13,14 +13,36 @@
 
 .menu-list li {
   list-style: none;
-  margin: 5px;
-  padding: 10px 40px;
+  padding: 5px 20px;
+  line-height: 40px;
 }
 
 .spoiler {
-  background-color: #673ab7;
+  background-color: #7242c9;
 }
 
 .spoiler-header {
+  border-bottom: 2px solid #673ab7;
+}
+
+.spoiler-header-title{
   color: white;
+}
+
+.spoiler li {
+  padding: 5px 0;
+  height: 30px;
+}
+
+.spoiler a:hover {
+  cursor: pointer;
+}
+
+.spoiler img {
+  vertical-align: middle;
+}
+
+.spoiler .channel {
+  font-weight: bold;
+  text-transform: capitalize;
 }

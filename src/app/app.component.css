@@ -3,3 +3,7 @@
   color: white;
   text-underline: none;
 }
+
+.button-toggle {
+  cursor: pointer;
+}

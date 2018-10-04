@@ -7,20 +7,20 @@
     <li>
       <mat-accordion>
         <mat-expansion-panel class="spoiler">
-          <mat-expansion-panel-header >
-            <mat-panel-title class="spoiler-header">
-              Follow games
+          <mat-expansion-panel-header class="spoiler-header">
+            <mat-panel-title class="spoiler-header-title">
+              Followed streams
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div *ngFor="let stream of followStreams; trackBy: stream?.channel.name">
-            <li >
+          <ul>
+            <li  *ngFor="let stream of followStreams; trackBy: stream?.channel.name">
               <a (click)="openStream(stream.channel.name)">
                 <img [src]="stream.channel.logo" width="30" height="30">
-                <span>  {{stream.channel.name}}  </span>
+                <span class="channel">  {{stream.channel.name}}  </span>
                 <span>{{stream.channel.game}}</span>
               </a>
             </li>
-          </div>
+          </ul>
         </mat-expansion-panel>
       </mat-accordion>
     </li>

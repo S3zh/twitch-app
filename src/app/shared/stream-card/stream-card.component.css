@@ -19,6 +19,7 @@
 
 .stream-card-title {
   font-size: 16px;
+  text-transform: capitalize;
 }
 
 .stream-card a {
