@@ -25,3 +25,7 @@
 .game-card a:hover {
   color: blue;
 }
+
+.game-title {
+  text-transform: capitalize;
+}

@@ -1,9 +1,14 @@
 <mat-card class="stream-card">
   <a (click)="openStream()">
-    <mat-card-header class="stream-card-header">
-      <mat-card-title class="stream-card-title">{{name}}</mat-card-title>
-      <mat-card-subtitle>Зрителей:{{viewers}}</mat-card-subtitle>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <img [src]="logo" width="42" height="42">
+      </div>
+      <div class="stream-card-header">
+        <mat-card-title class="stream-card-title">{{name}}</mat-card-title>
+        <mat-card-subtitle>Viewers:{{viewers}}</mat-card-subtitle>
+      </div>
     </mat-card-header>
-    <img [src]="src">
+    <img class="image-stream" [src]="src">
   </a>
 </mat-card>

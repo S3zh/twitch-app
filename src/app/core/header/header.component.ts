@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import {FollowService} from '../../main/service/follow.service';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private searchService: SearchService,
               private loginService: LoginService,
               private router: Router,
+              private followService: FollowService,
               private cd: ChangeDetectorRef) {
   }
 
@@ -97,6 +99,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.user = null; // удаляем информацию о пользователе в компоненте
     this.userToken = ''; // удаляем токен по которому была авторизация
     this.router.navigate(['/login']); // перенаправляем его для авторизации
+    this.followService.followInit$.next(false);
     this.cd.markForCheck();
   }
 

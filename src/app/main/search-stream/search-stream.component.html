@@ -8,7 +8,8 @@
       *ngFor="let stream of streams"
       [src]="stream.preview.large"
       [viewers]="stream.viewers"
-      [name]="stream.channel.name">
+      [name]="stream.channel.name"
+      [logo]="stream.channel.logo">
     </app-stream-card>
   </div>
   <div>

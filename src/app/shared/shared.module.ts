@@ -6,11 +6,13 @@ import { MatCardModule} from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { StreamCardComponent } from './stream-card/stream-card.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SafePipe } from './pipes/safe.pipe';
 
 const COMPONENTS = [
   LoadingSpinnerComponent,
   GamesCardComponent,
-  StreamCardComponent
+  StreamCardComponent,
+  SafePipe
 ];
 
 @NgModule({

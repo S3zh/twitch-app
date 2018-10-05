@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {Stream} from '../../main/interfaces/stream';
 import {SidebarService} from '../services/sidebar.service';
 import {takeUntil} from 'rxjs/operators';
@@ -16,6 +16,7 @@ import {Router} from '@angular/router';
 export class SideNavComponent implements OnInit, OnDestroy {
 
   followStreams: Array<Stream>;
+  @Output() toggle = new EventEmitter<boolean>();
   private ngUnsubscribe$ = new Subject();
 
   constructor(private sidebarService: SidebarService,
@@ -27,8 +28,12 @@ export class SideNavComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.followService.followInit$
       .pipe(takeUntil(this.ngUnsubscribe$))
-      .subscribe(() => {
-        this.getFollowStreams();
+      .subscribe((state) => {
+        if (state) {
+          this.getFollowStreams();
+        } else {
+          this.followStreams = [];
+        }
         this.cd.markForCheck();
       });
   }
@@ -50,5 +55,10 @@ export class SideNavComponent implements OnInit, OnDestroy {
   openStream(name: string) {
     this.streamService.currentStream$.next(name);
     this.route.navigate([`/stream/${name}`]);
+    this.toggle.emit(false);
+  }
+
+  changeSidenav(state: boolean) {
+    this.toggle.emit(state);
   }
 }

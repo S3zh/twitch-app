@@ -1,11 +1,14 @@
 <app-loading-spinner *ngIf="isLoading; else display"></app-loading-spinner>
 <ng-template #display>
-  <div>
-    <span class="stream-info">This is {{ stream.channel.display_name}} stream!</span>
-    <span class="stream-info">Now playing in {{stream.game}}</span>
-    <button *ngIf="isFollow; else followButton"  mat-raised-button color="primary" (click)="unfollow()">Unfollow</button>
+  <div class="block-info">
+    <div class="stream-info">
+      <img [src]="stream.channel.logo" width="40" height="40" class="channel-logo">
+      <span >This is <span class="bold">{{ stream.channel.display_name}}</span> stream!</span>
+    </div>
+    <span class="stream-info">Now playing in <span class="bold">{{stream.game}}</span></span>
+    <button *ngIf="isFollow; else followButton"  mat-raised-button color="primary" (click)="unfollow()" class="stream-info follow-button">Unfollow</button>
     <ng-template #followButton>
-      <button mat-raised-button color="primary" (click)="follow()">Follow</button>
+      <button mat-raised-button color="primary" (click)="follow()" class="stream-info follow-button">Follow</button>
     </ng-template>
   </div>
   <div class="player">
@@ -24,9 +27,9 @@
             width="20%">
     </iframe>
   </div>
-  <div>
-    <span class="stream-info">{{stream.channel.status}} </span>
-    <span class="stream-info">Viewers: {{stream.viewers}}</span>
+  <div class="block-info">
+    <span class="stream-info"><span class="bold">Description:</span> {{stream.channel.status}}</span>
+    <span class="stream-info"><span class="bold">Viewers:</span> {{stream.viewers}}</span>
   </div>
 </ng-template>
 

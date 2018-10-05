@@ -13,6 +13,7 @@ export class StreamCardComponent {
   @Input() name: string;
   @Input() viewers: number;
   @Input() src: string;
+  @Input() logo: string;
 
   constructor(private route: Router,
               private streamService: StreamService) {

@@ -1,9 +1,9 @@
 <div class="sidenav-menu">
   <ul class="menu-list">
     <li>
-      <ng-content></ng-content>
+      <span (click)="changeSidenav(false)" class="button-toggle">Twitch app</span>
     </li>
-    <li><a routerLink="/games">Games</a></li>
+    <li><a routerLink="/games" (click)="changeSidenav(false)">Games</a></li>
     <li>
       <mat-accordion>
         <mat-expansion-panel class="spoiler">

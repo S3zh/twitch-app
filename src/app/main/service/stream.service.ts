@@ -53,6 +53,7 @@ export class StreamService {
   }
 
   getStreams(game: string): Observable<Array<Stream>> {
+    game = game.replace('&', '%26');
     const url = `https://api.twitch.tv/kraken/streams/?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=44&game=${game}`;
     return this.http.get<StreamsResponse>(url)
       .pipe(map(result => result.streams),

@@ -46,3 +46,7 @@
   font-weight: bold;
   text-transform: capitalize;
 }
+
+.button-toggle {
+  cursor: pointer;
+}
