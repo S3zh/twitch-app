@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { ClipsComponent } from './clips/clips.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { RouterModule } from '@angular/router';
     GamesComponent,
     StreamsComponent,
     SearchStreamComponent,
+    ClipsComponent,
   ]
 })
 export class MainModule {
