@@ -1,0 +1,27 @@
+.clip-card {
+  margin: 5px;
+  padding: 10px;
+  width: 380px;
+}
+
+.clip-card-header {
+  justify-content: center;
+}
+
+.image-clip {
+  width: 100%;
+}
+
+.clip-card-title {
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.clip-card a {
+  text-decoration: none;
+  color: black;
+}
+
+.clip-card a:hover {
+  color: blue;
+}
