@@ -9,6 +9,7 @@ import {MatDialogRef} from '@angular/material';
 })
 export class ClipDisplayDialogComponent {
 
-  constructor(public thisDialogRef: MatDialogRef<ClipDisplayDialogComponent>) { }
+  constructor(public thisDialogRef: MatDialogRef<ClipDisplayDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data) { }
 
 }

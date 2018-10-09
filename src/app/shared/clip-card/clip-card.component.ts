@@ -14,15 +14,18 @@ export class ClipCardComponent {
   @Input() title: string;
   @Input() views: string;
   @Input() channel_name: string;
+  @Input() url: string;
 
   constructor(public dialog: MatDialog) {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ClipDisplayDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    this.dialog.open(ClipDisplayDialogComponent, {
+      hasBackdrop: true,
+      data: {
+        url: this.url,
+        title: this.title
+      }
     });
   }
 }

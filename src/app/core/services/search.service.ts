@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { StreamsResponse } from '../../main/interfaces/streams-response';
 import { Stream } from '../../main/interfaces/stream';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -20,8 +20,8 @@ export class SearchService {
     return this.http.get<StreamsResponse>(url)
       .pipe(
         map(result => result.streams),
-        catchError(() =>
-          of([] as Array<Stream>))
+        catchError((err) =>
+          throwError(err))
       );
   }
 }
