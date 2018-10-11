@@ -1,12 +1,18 @@
 <div class="page-title">
   <h1>Games:</h1>
 </div>
-<app-loading-spinner *ngIf="!games"></app-loading-spinner>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 <div class="display-games">
   <app-games-card
-    *ngFor="let game of games"
+    *ngFor="let game of games; trackBy: game?.game._id"
     [name]="game.game.name"
     [viewers]="game.viewers"
     [src]="game.game.box.large">
   </app-games-card>
+</div>
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="0"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()">
 </div>

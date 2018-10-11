@@ -13,6 +13,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ClipsComponent } from './clips/clips.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ClipsComponent } from './clips/clips.component';
     HttpClientModule,
     MatProgressSpinnerModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    InfiniteScrollModule
   ],
   declarations: [
     StreamViewComponent,
