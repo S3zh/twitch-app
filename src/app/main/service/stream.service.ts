@@ -40,7 +40,7 @@ export class StreamService {
   }
 
   getGames(): Observable<Array<Game>> {
-    const url = 'https://api.twitch.tv/kraken/games/top?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=41';
+    const url = 'https://api.twitch.tv/kraken/games/top?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=100';
     return this.http.get<GameResponse>(url)
       .pipe(map(result => result.top),
         catchError(() =>

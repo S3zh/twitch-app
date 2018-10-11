@@ -6,11 +6,12 @@ import {
   OnInit,
 } from '@angular/core';
 import { StreamService } from '../service/stream.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Stream } from '../interfaces/stream';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import {FollowService} from '../service/follow.service';
+import {ClipService} from '../service/clip.service';
 
 @Component({
   selector: 'app-stream-view',
@@ -29,6 +30,8 @@ export class StreamViewComponent implements OnInit, OnDestroy {
 
   constructor(private streamService: StreamService,
               private followService: FollowService,
+              private clipService: ClipService,
+              private router: Router,
               private route: ActivatedRoute,
               private cd: ChangeDetectorRef) {
   }
@@ -55,8 +58,8 @@ export class StreamViewComponent implements OnInit, OnDestroy {
         this.stream = answer;
         this.isLoading = false;
         this.checkFollow(this.stream.channel._id);
-        this.streamUrl = `https://player.twitch.tv/?channel=${this.stream.channel['name']}&autoplay=false`;
-        this.chatUrl = `https://www.twitch.tv/embed/${this.stream.channel['name']}/chat`;
+        this.streamUrl = `https://player.twitch.tv/?channel=${this.stream.channel.name}&autoplay=false`;
+        this.chatUrl = `https://www.twitch.tv/embed/${this.stream.channel.name}/chat`;
         this.cd.markForCheck();
       });
   }
@@ -93,5 +96,10 @@ export class StreamViewComponent implements OnInit, OnDestroy {
         this.isFollow = false;
         this.cd.markForCheck();
       });
+  }
+
+  initClips() {
+    this.clipService.clipInit$.next(this.stream.channel.name);
+    this.router.navigate(['/clips']);
   }
 }

@@ -6,10 +6,13 @@
       <span >This is <span class="bold">{{ stream.channel.display_name}}</span> stream!</span>
     </div>
     <span class="stream-info">Now playing in <span class="bold">{{stream.game}}</span></span>
-    <button *ngIf="isFollow; else followButton"  mat-raised-button color="primary" (click)="unfollow()" class="stream-info follow-button">Unfollow</button>
-    <ng-template #followButton>
-      <button mat-raised-button color="primary" (click)="follow()" class="stream-info follow-button">Follow</button>
-    </ng-template>
+    <div>
+      <a (click)="initClips()" class="clip-link">Clips</a>
+      <button *ngIf="isFollow; else followButton"  mat-raised-button color="primary" (click)="unfollow()" class="stream-info follow-button">Unfollow</button>
+      <ng-template #followButton>
+        <button mat-raised-button color="primary" (click)="follow()" class="stream-info follow-button">Follow</button>
+      </ng-template>
+    </div>
   </div>
   <div class="player">
     <iframe [src]="streamUrl | safe"

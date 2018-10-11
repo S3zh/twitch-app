@@ -6,6 +6,7 @@ import {Subject} from 'rxjs';
 import {FollowService} from '../../main/service/follow.service';
 import {StreamService} from '../../main/service/stream.service';
 import {Router} from '@angular/router';
+import {ClipService} from '../../main/service/clip.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -22,7 +23,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
   constructor(private sidebarService: SidebarService,
               private followService: FollowService,
               private streamService: StreamService,
-              private route: Router,
+              private clipService: ClipService,
+              private router: Router,
               private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -54,11 +56,17 @@ export class SideNavComponent implements OnInit, OnDestroy {
 
   openStream(name: string) {
     this.streamService.currentStream$.next(name);
-    this.route.navigate([`/stream/${name}`]);
+    this.router.navigate([`/stream/${name}`]);
     this.toggle.emit(false);
   }
 
   changeSidenav(state: boolean) {
     this.toggle.emit(state);
+  }
+
+  openClips() {
+    this.router.navigate(['/clips']);
+    this.clipService.clipInit$.next('');
+    this.toggle.emit(false);
   }
 }

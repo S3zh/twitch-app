@@ -3,6 +3,7 @@ import {ClipService} from '../service/clip.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {Clip} from '../interfaces/clip';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-clips',
@@ -13,13 +14,21 @@ import {Clip} from '../interfaces/clip';
 export class ClipsComponent implements OnInit, OnDestroy {
 
   clips: Array<Clip>;
+  isLoaded: boolean;
   private ngUnsubscribe$ = new Subject();
 
   constructor(private clipService: ClipService,
+              private route: ActivatedRoute,
               private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.getTopClips();
+    this.clipService.clipInit$
+      .pipe(takeUntil(this.ngUnsubscribe$))
+      .subscribe((channel_name) => {
+        this.isLoaded = false;
+        this.getTopClips(channel_name);
+        this.cd.markForCheck();
+      });
   }
 
   ngOnDestroy() {
@@ -27,12 +36,12 @@ export class ClipsComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe$.complete();
   }
 
-  getTopClips() {
-    this.clipService.getClips()
+  getTopClips(channel_name: string) {
+    this.clipService.getClips(channel_name)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer) => {
         this.clips = answer;
-        console.log(this.clips);
+        this.isLoaded = true;
         this.cd.markForCheck();
       });
   }

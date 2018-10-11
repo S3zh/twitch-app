@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginService } from '../../core/services/login.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Channel} from '../interfaces/channel';
-import {Observable, of, ReplaySubject, throwError} from 'rxjs';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {FollowResponse} from '../interfaces/follow-response';
 import {catchError, map} from 'rxjs/operators';
 
@@ -11,7 +11,7 @@ import {catchError, map} from 'rxjs/operators';
 })
 export class FollowService {
 
-  followInit$ = new ReplaySubject<boolean>();
+  followInit$ = new BehaviorSubject<boolean>(null);
 
   constructor(private loginService: LoginService,
               private http: HttpClient) {

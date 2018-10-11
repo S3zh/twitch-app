@@ -1,15 +1,17 @@
 <div class="page-title">
   <h2>Most viewed clips of the week:</h2>
 </div>
-<app-loading-spinner *ngIf="!clips"></app-loading-spinner>
-<div class="display-clips">
-  <app-clip-card
-    *ngFor="let clip of clips"
-    [img]="clip.thumbnails.medium"
-    [views]="clip.views"
-    [title]="clip.title"
-    [game]="clip.game"
-    [channel_name]="clip.broadcaster.name"
-    [url]="clip.embed_url">
-  </app-clip-card>
-</div>
+<app-loading-spinner *ngIf="!isLoaded; else displayClip"></app-loading-spinner>
+<ng-template #displayClip>
+  <div class="display-clips">
+    <app-clip-card
+      *ngFor="let clip of clips"
+      [img]="clip.thumbnails.medium"
+      [views]="clip.views"
+      [title]="clip.title"
+      [game]="clip.game"
+      [channel_name]="clip.broadcaster.name"
+      [url]="clip.embed_url">
+    </app-clip-card>
+  </div>
+</ng-template>

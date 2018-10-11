@@ -4,7 +4,7 @@
       <span (click)="changeSidenav(false)" class="button-toggle">Twitch app</span>
     </li>
     <li><a routerLink="/games" (click)="changeSidenav(false)">Top Games</a></li>
-    <li><a routerLink="/clips" (click)="changeSidenav(false)">Top Clips</a></li>
+    <li><a (click)="openClips()">Top Clips</a></li>
     <li>
       <mat-accordion>
         <mat-expansion-panel class="spoiler">
