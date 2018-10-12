@@ -5,7 +5,7 @@
 <ng-template #displayStream>
   <div class="display-stream" *ngIf="isNotEmpty; else elseBlock">
     <app-stream-card
-      *ngFor="let stream of streams"
+      *ngFor="let stream of streams; trackBy: stream?._id"
       [src]="stream.preview.large"
       [viewers]="stream.viewers"
       [name]="stream.channel.name"
@@ -19,5 +19,11 @@
         <h3>Nothing found</h3>
       </div>
     </ng-template>
+  </div>
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="0"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
   </div>
 </ng-template>

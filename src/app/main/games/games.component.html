@@ -4,7 +4,7 @@
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 <div class="display-games">
   <app-games-card
-    *ngFor="let game of games; trackBy: game?.game._id"
+    *ngFor="let game of games;trackBy:game?.game._id"
     [name]="game.game.name"
     [viewers]="game.viewers"
     [src]="game.game.box.large">

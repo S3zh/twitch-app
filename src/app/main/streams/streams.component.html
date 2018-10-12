@@ -1,13 +1,19 @@
 <div class="page-title">
   <h1>Streams:</h1>
 </div>
-<app-loading-spinner *ngIf="!streams"></app-loading-spinner>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 <div class="display-stream">
   <app-stream-card
-    *ngFor="let stream of streams"
+    *ngFor="let stream of streams; trackBy: stream?._id"
     [src]="stream.preview.large"
     [viewers]="stream.viewers"
     [name]="stream.channel.name"
     [logo]="stream.channel.logo">
   </app-stream-card>
+</div>
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="0"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()">
 </div>

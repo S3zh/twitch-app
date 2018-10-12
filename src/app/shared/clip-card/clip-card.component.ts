@@ -11,10 +11,8 @@ import {ClipDisplayDialogComponent} from './clip-display/clip-display-dialog.com
 export class ClipCardComponent {
 
   @Input() img: string;
-  @Input() game: string;
   @Input() title: string;
   @Input() views: string;
-  @Input() channel_name: string;
   @Input() url: string;
 
   constructor(public dialog: MatDialog) {
@@ -24,8 +22,7 @@ export class ClipCardComponent {
     this.dialog.open(ClipDisplayDialogComponent, {
       hasBackdrop: true,
       data: {
-        url: this.url,
-        title: this.title
+        url: this.url
       }
     });
   }

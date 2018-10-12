@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError, BehaviorSubject} from 'rxjs';
-import {Clip} from '../interfaces/clip';
 import {ClipResponse} from '../interfaces/clip-response';
-import {catchError, map} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +14,8 @@ export class ClipService {
   constructor(private http: HttpClient) {
   }
 
-  getClips(channel_name: string): Observable<Array<Clip>> {
-    let query = 'https://api.twitch.tv/kraken/clips/top?limit=99';
+  getClips(channel_name: string, cursor: string): Observable<ClipResponse> {
+    let query = `https://api.twitch.tv/kraken/clips/top?limit=21&cursor=${cursor}`;
     if (channel_name) {
       query += `&channel=${channel_name}`;
     }
@@ -27,8 +26,8 @@ export class ClipService {
       })
     };
     return this.http.get<ClipResponse>(query, httpOptions)
-      .pipe(map((answer) => answer.clips),
-            catchError((err) => throwError(err))
+      .pipe(
+        catchError((err) => throwError(err))
       );
   }
 

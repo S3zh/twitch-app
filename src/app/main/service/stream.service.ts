@@ -53,9 +53,10 @@ export class StreamService {
       );
   }
 
-  getStreams(game: string): Observable<Array<Stream>> {
+  getStreams(game: string, batch: number): Observable<Array<Stream>> {
+    const offset = batch * 28;
     game = game.replace('&', '%26');
-    const url = `https://api.twitch.tv/kraken/streams/?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=44&game=${game}`;
+    const url = `https://api.twitch.tv/kraken/streams/?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=28&game=${game}&offset=${offset}`;
     return this.http.get<StreamsResponse>(url)
       .pipe(map(result => result.streams),
         catchError(() =>
