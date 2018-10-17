@@ -1,0 +1,52 @@
+.sidenav-menu {
+  font-size: 22px;
+}
+
+.sidenav-menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidenav-menu a:hover {
+  text-decoration: underline;
+}
+
+.menu-list li {
+  list-style: none;
+  padding: 5px 20px;
+  line-height: 40px;
+}
+
+.spoiler {
+  background-color: #7242c9;
+}
+
+.spoiler-header {
+  border-bottom: 2px solid #673ab7;
+}
+
+.spoiler-header-title{
+  color: white;
+}
+
+.spoiler li {
+  padding: 5px 0;
+  height: 30px;
+}
+
+.spoiler a:hover {
+  cursor: pointer;
+}
+
+.spoiler img {
+  vertical-align: middle;
+}
+
+.spoiler .channel {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.button-toggle {
+  cursor: pointer;
+}

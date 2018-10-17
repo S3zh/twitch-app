@@ -1,0 +1,27 @@
+.stream-card {
+  margin: 5px;
+  padding: 10px;
+  width: 290px;
+}
+
+.stream-card-header {
+  justify-content: center;
+}
+
+.image-stream {
+  width: 100%;
+}
+
+.stream-card-title {
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.stream-card a {
+  text-decoration: none;
+  color: black;
+}
+
+.stream-card a:hover {
+  color: blue;
+}

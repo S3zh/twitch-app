@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CoreRoutingModule } from './core-routing.module';
-import { MatButtonModule, MatInputModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatInputModule, MatToolbarModule, MatSidenavModule, MatExpansionModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   imports: [
@@ -22,16 +24,21 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    MatExpansionModule
   ],
   declarations: [
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent,
+    SideNavComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
+    SideNavComponent,
     RouterModule
   ],
 })

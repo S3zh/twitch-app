@@ -6,3 +6,29 @@
   font-size: 20px;
   margin: 0 20px;
 }
+
+.follow-button {
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.block-info {
+  padding: 5px;
+  border: 1px solid #7242c9;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.player {
+  border-right: 1px solid #7242c9;
+  border-left: 1px solid #7242c9;
+}
+
+.channel-logo {
+  vertical-align: middle;
+  margin-right: 5px;
+}

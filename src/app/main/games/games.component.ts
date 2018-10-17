@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { StreamService } from '../service/stream.service';
 import { Game } from '../interfaces/game';
 import { takeUntil } from 'rxjs/operators';

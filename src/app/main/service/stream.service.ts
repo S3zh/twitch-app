@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import { Game } from '../interfaces/game';
 import { Stream } from '../interfaces/stream';
 import { GameResponse } from '../interfaces/game-response';
@@ -13,6 +13,8 @@ import { StreamResponse } from '../interfaces/stream-response';
 })
 
 export class StreamService {
+
+  currentStream$ = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {
   }
@@ -51,6 +53,7 @@ export class StreamService {
   }
 
   getStreams(game: string): Observable<Array<Stream>> {
+    game = game.replace('&', '%26');
     const url = `https://api.twitch.tv/kraken/streams/?client_id=4osqgh9a16thvsc8qw4dttcf6mrodk&limit=44&game=${game}`;
     return this.http.get<StreamsResponse>(url)
       .pipe(map(result => result.streams),

@@ -5,7 +5,6 @@ import { StreamViewComponent } from './stream-view/stream-view.component';
 import { GamesComponent } from './games/games.component';
 import { StreamsComponent } from './streams/streams.component';
 import { SearchStreamComponent } from './search-stream/search-stream.component';
-import { SafePipe } from './safe.pipe';
 import { MatButtonModule, MatCardModule, MatInputModule, MatToolbarModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +34,6 @@ import { RouterModule } from '@angular/router';
     GamesComponent,
     StreamsComponent,
     SearchStreamComponent,
-    SafePipe
   ]
 })
 export class MainModule {
