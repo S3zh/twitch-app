@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {LoginService} from './login.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {StreamsResponse} from '../../main/interfaces/streams-response';
-import {Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {Stream} from '../../main/interfaces/stream';
 import {catchError, map} from 'rxjs/operators';
 
@@ -10,6 +10,8 @@ import {catchError, map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SidebarService {
+
+  followInit$ = new BehaviorSubject<boolean>(null);
 
   constructor(private loginService: LoginService,
               private http: HttpClient) {

@@ -3,7 +3,6 @@ import {Stream} from '../../main/interfaces/stream';
 import {SidebarService} from '../services/sidebar.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {FollowService} from '../../main/service/follow.service';
 import {StreamService} from '../../main/service/stream.service';
 import {Router} from '@angular/router';
 import {ClipService} from '../../main/service/clip.service';
@@ -21,14 +20,13 @@ export class SideNavComponent implements OnInit, OnDestroy {
   private ngUnsubscribe$ = new Subject();
 
   constructor(private sidebarService: SidebarService,
-              private followService: FollowService,
               private streamService: StreamService,
               private clipService: ClipService,
               private router: Router,
               private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.followService.followInit$
+    this.sidebarService.followInit$
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((state) => {
         if (state) {

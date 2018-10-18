@@ -12,6 +12,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import {FollowService} from '../service/follow.service';
 import {ClipService} from '../service/clip.service';
+import {SidebarService} from '../../core/services/sidebar.service';
 
 @Component({
   selector: 'app-stream-view',
@@ -30,6 +31,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
 
   constructor(private streamService: StreamService,
               private followService: FollowService,
+              private sidebarService: SidebarService,
               private clipService: ClipService,
               private router: Router,
               private route: ActivatedRoute,
@@ -82,7 +84,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
     this.followService.follow(this.stream.channel._id)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe(() => {
-        this.followService.followInit$.next(true);
+        this.sidebarService.followInit$.next(true);
         this.isFollow = true;
         this.cd.markForCheck();
       });
@@ -92,7 +94,7 @@ export class StreamViewComponent implements OnInit, OnDestroy {
     this.followService.unfollow(this.stream.channel._id)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe(() => {
-        this.followService.followInit$.next(true);
+        this.sidebarService.followInit$.next(true);
         this.isFollow = false;
         this.cd.markForCheck();
       });
