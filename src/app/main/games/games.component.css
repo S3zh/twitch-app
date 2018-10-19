@@ -8,38 +8,6 @@
   text-align: center;
 }
 
-.display-games a {
-  text-decoration: none;
-  color: black;
-}
-
-.display-games a:hover {
-  color: blue;
-}
-
-.game-card {
-  text-align: center;
-  margin: 5px;
-  padding: 10px;
-  width: 22%;
-}
-
-.game-card-header {
-  justify-content: center;
-}
-
-.mat-card-header-text {
-  text-align: center;
-}
-
-.game-card img {
-  width: 100%;
-}
-
-.game-card-title {
-  font-size: 16px;
-}
-
 .page-title {
   margin: 10px 0;
 }

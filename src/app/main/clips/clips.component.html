@@ -1,0 +1,22 @@
+<div class="page-title">
+  <h2>Most viewed clips of the week:</h2>
+</div>
+<app-loading-spinner *ngIf="!isLoaded; else displayClip"></app-loading-spinner>
+<ng-template #displayClip>
+  <div class="display-clips">
+    <app-clip-card
+      *ngFor="let clip of clips; trackBy: clip?.tracking_id"
+      [img]="clip.thumbnails.medium"
+      [views]="clip.views"
+      [title]="clip.title"
+      [url]="clip.embed_url">
+    </app-clip-card>
+  </div>
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="0"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
+  </div>
+</ng-template>
+

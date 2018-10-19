@@ -1,0 +1,29 @@
+<div class="sidenav-menu">
+  <ul class="menu-list">
+    <li>
+      <span (click)="changeSidenav(false)" class="button-toggle">Twitch app</span>
+    </li>
+    <li><a routerLink="/games" (click)="changeSidenav(false)">Top Games</a></li>
+    <li><a (click)="openClips()">Top Clips</a></li>
+    <li>
+      <mat-accordion>
+        <mat-expansion-panel class="spoiler">
+          <mat-expansion-panel-header class="spoiler-header">
+            <mat-panel-title class="spoiler-header-title">
+              Followed streams
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul>
+            <li  *ngFor="let stream of followStreams; trackBy: stream?.channel.name">
+              <a (click)="openStream(stream.channel.name)">
+                <img [src]="stream.channel.logo" width="30" height="30">
+                <span class="channel">  {{stream.channel.name}}  </span>
+                <span>{{stream.channel.game}}</span>
+              </a>
+            </li>
+          </ul>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </li>
+  </ul>
+</div>

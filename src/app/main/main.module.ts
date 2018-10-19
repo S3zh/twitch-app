@@ -5,7 +5,6 @@ import { StreamViewComponent } from './stream-view/stream-view.component';
 import { GamesComponent } from './games/games.component';
 import { StreamsComponent } from './streams/streams.component';
 import { SearchStreamComponent } from './search-stream/search-stream.component';
-import { SafePipe } from './safe.pipe';
 import { MatButtonModule, MatCardModule, MatInputModule, MatToolbarModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { ClipsComponent } from './clips/clips.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 @NgModule({
   imports: [
@@ -28,14 +29,15 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     MatProgressSpinnerModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    InfiniteScrollModule
   ],
   declarations: [
     StreamViewComponent,
     GamesComponent,
     StreamsComponent,
     SearchStreamComponent,
-    SafePipe
+    ClipsComponent,
   ]
 })
 export class MainModule {

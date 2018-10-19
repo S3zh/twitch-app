@@ -6,3 +6,47 @@
   font-size: 20px;
   margin: 0 20px;
 }
+
+.follow-button {
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.block-info {
+  padding: 5px;
+  border: 1px solid #7242c9;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.player {
+  border-right: 1px solid #7242c9;
+  border-left: 1px solid #7242c9;
+}
+
+.channel-logo {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.clip-link {
+  text-decoration: none;
+  color: white;
+  background-color: #673ab7;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 2px;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  box-shadow:
+    0 3px 1px -2px rgba(0,0,0,.2),
+    0 2px 2px 0 rgba(0,0,0,.14),
+    0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.clip-link:hover {
+  text-decoration: underline;
+}

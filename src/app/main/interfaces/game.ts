@@ -1,6 +1,7 @@
 export interface Game {
   channels: number;
   game: {
+    _id: number;
     box: {
       large: string;
       medium: string;

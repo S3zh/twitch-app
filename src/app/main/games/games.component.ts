@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { StreamService } from '../service/stream.service';
 import { Game } from '../interfaces/game';
 import { takeUntil } from 'rxjs/operators';
@@ -13,7 +13,9 @@ import { Subject } from 'rxjs';
 
 export class GamesComponent implements OnInit, OnDestroy {
 
-  games: Array<Game>;
+  batch = 0;
+  games: Array<Game> = [];
+  isLoading: boolean;
   private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
@@ -21,6 +23,7 @@ export class GamesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.getGames();
   }
 
@@ -29,11 +32,16 @@ export class GamesComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe$.complete();
   }
 
+  onScroll() {
+    this.getGames();
+  }
+
   getGames() {
-    this.streamService.getGames()
+    this.streamService.getGames(this.batch++)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Game>) => {
-        this.games = answer;
+        this.games.push(...answer);
+        this.isLoading = false;
         this.cd.markForCheck();
       });
   }

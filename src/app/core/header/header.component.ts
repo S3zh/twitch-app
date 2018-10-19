@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { User } from '../interfaces/user';
 import { Subject } from 'rxjs';
@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import {SidebarService} from '../services/sidebar.service';
 
 @Component({
   selector: 'app-header',
@@ -19,11 +20,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: User;
   userToken: string;
   isAuth = false;
+  @Output() toggle = new EventEmitter<boolean>();
   private ngUnsubscribe$ = new Subject();
 
   constructor(private searchService: SearchService,
               private loginService: LoginService,
               private router: Router,
+              private sidebarService: SidebarService,
               private cd: ChangeDetectorRef) {
   }
 
@@ -74,7 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         } else { // если все нормально
           this.user = answer; // записываем информацию пользователя, что бы использовать его ник в хедере
           this.isAuth = this.user.valid; // меняем метку на true, чтобы убрать кнопку авторизации
-          this.loginService.setUser(this.user); // записываем информацию о пользователе в localeStorage
+          this.loginService.setUser(this.user, token); // записываем информацию о пользователе в localeStorage
           this.router.navigate(['']); // отправляем его на страницу с играми, так как он авторизовался
         }
         this.cd.markForCheck();
@@ -96,6 +99,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.user = null; // удаляем информацию о пользователе в компоненте
     this.userToken = ''; // удаляем токен по которому была авторизация
     this.router.navigate(['/login']); // перенаправляем его для авторизации
+    this.sidebarService.followInit$.next(false);
     this.cd.markForCheck();
+  }
+
+  changeSidenav(state: boolean) {
+    this.toggle.emit(state);
   }
 }

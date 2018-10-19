@@ -14,7 +14,9 @@ import { Subject } from 'rxjs';
 
 export class StreamsComponent implements OnInit, OnDestroy {
 
-  streams: Array<Stream>;
+  isLoading: boolean;
+  streams: Array<Stream> = [];
+  batch = 0;
   private ngUnsubscribe$ = new Subject();
 
   constructor(private streamService: StreamService,
@@ -23,6 +25,7 @@ export class StreamsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.getStreams();
   }
 
@@ -31,12 +34,17 @@ export class StreamsComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe$.complete();
   }
 
+  onScroll() {
+    this.getStreams();
+  }
+
   getStreams() {
     const game = this.route.snapshot.paramMap.get('game');
-    this.streamService.getStreams(game)
+    this.streamService.getStreams(game, this.batch++)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Stream>) => {
-        this.streams = answer;
+        this.streams.push(...answer);
+        this.isLoading = false;
         this.cd.markForCheck();
       });
   }

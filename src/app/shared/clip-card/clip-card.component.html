@@ -1,0 +1,11 @@
+<mat-card class="clip-card">
+  <a (click)="openDialog()">
+    <mat-card-header>
+      <div class="clip-card-header">
+        <mat-card-title class="clip-card-title">{{title}}</mat-card-title>
+        <mat-card-subtitle>Viewers:{{views}}</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <img class="image-clip" [src]="img">
+  </a>
+</mat-card>

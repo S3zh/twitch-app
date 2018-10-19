@@ -14,8 +14,10 @@ import { Stream } from '../interfaces/stream';
 export class SearchStreamComponent implements OnInit, OnDestroy {
 
   isNotEmpty = true;
-  streams: Array<Stream>;
+  streams: Array<Stream> = [];
   isLoaded: boolean;
+  batch = 0;
+  searchQuery: string;
   private ngUnsubscribe$ = new Subject();
 
   constructor(private searchService: SearchService,
@@ -27,7 +29,10 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((query) => {
         this.isLoaded = false;
-        this.searchStreams(query);
+        this.searchQuery = query;
+        this.batch = 0;
+        this.streams = []; // Обнуляем значения так как пользователь изменид строку запроса
+        this.searchStreams(this.searchQuery);
         this.cd.markForCheck();
       });
   }
@@ -38,17 +43,17 @@ export class SearchStreamComponent implements OnInit, OnDestroy {
   }
 
   searchStreams(query: string) {
-    this.searchService.searchStreams(query)
+    this.searchService.searchStreams(query, this.batch++)
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((answer: Array<Stream>) => {
         this.isLoaded = true;
         this.isNotEmpty = !!answer.length;
-        this.streams = answer;
+        this.streams.push(...answer);
         this.cd.markForCheck();
       });
   }
 
-  getUrl(subUrl: string) {
-    return `/stream/${subUrl}`;
+  onScroll() {
+    this.searchStreams(this.searchQuery);
   }
 }

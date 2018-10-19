@@ -4,15 +4,13 @@
 <app-loading-spinner *ngIf="!isLoaded; else displayStream"></app-loading-spinner>
 <ng-template #displayStream>
   <div class="display-stream" *ngIf="isNotEmpty; else elseBlock">
-    <mat-card class="stream-card" *ngFor="let stream of streams">
-      <a [routerLink]="getUrl(stream.channel.name)">
-        <mat-card-header class="stream-card-header">
-          <mat-card-title class="stream-card-title">{{stream.channel.display_name}}</mat-card-title>
-          <mat-card-subtitle>Зрителей:{{stream.viewers}}</mat-card-subtitle>
-        </mat-card-header>
-        <img [src]="stream.preview.large">
-      </a>
-    </mat-card>
+    <app-stream-card
+      *ngFor="let stream of streams; trackBy: stream?._id"
+      [src]="stream.preview.large"
+      [viewers]="stream.viewers"
+      [name]="stream.channel.name"
+      [logo]="stream.channel.logo">
+    </app-stream-card>
   </div>
   <div>
     <ng-template #elseBlock>
@@ -21,5 +19,11 @@
         <h3>Nothing found</h3>
       </div>
     </ng-template>
+  </div>
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="0"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
   </div>
 </ng-template>

@@ -13,29 +13,6 @@
   color: blue;
 }
 
-.stream-card {
-  text-align: center;
-  margin: 5px;
-  padding: 10px;
-  width: 22%;
-}
-
-.stream-card-header {
-  justify-content: center;
-}
-
-.mat-card-header-text {
-  text-align: center;
-}
-
-.stream-card img {
-  width: 100%;
-}
-
-.stream-card-title {
-  font-size: 16px;
-}
-
 .page-title {
   margin: 10px 0;
   text-align: center;

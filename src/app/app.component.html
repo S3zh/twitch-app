@@ -1,3 +1,15 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<app-header (toggle)="sidenav.toggle()"></app-header>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav
+               mode="over"
+               [fixedInViewport]="true"
+               hasBackdrop="true"
+               class="sidenav">
+    <app-side-nav (toggle)="sidenav.toggle()">
+    </app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 <app-footer></app-footer>
